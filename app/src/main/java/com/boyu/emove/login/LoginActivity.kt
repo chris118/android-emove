@@ -1,13 +1,10 @@
 package com.boyu.emove.Login
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.boyu.emove.Base.BaseActivity
-import com.boyu.emove.Main.MainActivity
+import com.boyu.emove.base.BaseActivity
+import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.R
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.startActivity
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 

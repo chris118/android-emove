@@ -1,4 +1,4 @@
-package com.boyu.emove.Main
+package com.boyu.emove.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

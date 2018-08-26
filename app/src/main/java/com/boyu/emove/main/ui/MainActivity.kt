@@ -1,15 +1,12 @@
-package com.boyu.emove.Main
+package com.boyu.emove.main.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.boyu.emove.Base.BaseActivity
 import com.boyu.emove.R
-import com.boyu.emove.R.id.btn_increment
-import com.boyu.emove.R.id.tv_counter
+import com.boyu.emove.main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

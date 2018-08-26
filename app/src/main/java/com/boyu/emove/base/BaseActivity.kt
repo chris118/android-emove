@@ -1,4 +1,4 @@
-package com.boyu.emove.Base
+package com.boyu.emove.base
 
 import android.app.Activity
 import android.content.Intent
