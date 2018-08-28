@@ -3,24 +3,15 @@ package com.boyu.emove.main.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.boyu.emove.R
-import com.boyu.emove.home.HomeFragment
-import com.boyu.emove.info.InfoFragment
 import com.boyu.emove.main.viewmodel.MainViewModel
-import com.boyu.emove.orderlist.OrderListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.java.simpleName
-//    private var homeFragment: HomeFragment? = null
-//    private var infoFragment: InfoFragment? = null
-//    private var orderListFragment: OrderListFragment? = null
-//    private var fragmentList: Array<Fragment?> = arrayOfNulls(3)
-//    private var seletedFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +24,10 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         bnv_bottom_navigation.visibility = View.VISIBLE
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
+    }
+    override fun onBackPressed() {
+        bnv_bottom_navigation.visibility = View.VISIBLE
+        super.onBackPressed()
     }
 
     private fun setupNavigationController() {
@@ -51,21 +46,25 @@ class MainActivity : AppCompatActivity() {
 
             when(item.itemId) {
                 com.boyu.emove.R.id.homeFragment -> {
-//                    switchTab(0)
                     supportActionBar?.hide()
                 }
                 com.boyu.emove.R.id.infoFragment -> {
-//                    switchTab(1)
                     supportActionBar?.show()
                 }
                 com.boyu.emove.R.id.orderListFragment -> {
-//                    switchTab(2)
                     supportActionBar?.hide()
                 }
             }
             return@setOnNavigationItemSelectedListener true
         }
     }
+
+
+//    private var homeFragment: HomeFragment? = null
+//    private var infoFragment: InfoFragment? = null
+//    private var orderListFragment: OrderListFragment? = null
+//    private var fragmentList: Array<Fragment?> = arrayOfNulls(3)
+//    private var seletedFragment: Fragment? = null
 
 //    private fun switchTab(index: Int){
 //        when(index) {

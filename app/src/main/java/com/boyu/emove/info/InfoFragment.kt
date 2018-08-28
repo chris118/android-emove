@@ -1,18 +1,13 @@
 package com.boyu.emove.info
 
-import android.content.Intent
-import android.opengl.Visibility
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.boyu.emove.R
-import kotlinx.android.synthetic.main.info_fragment.*
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.info_fragment.*
 
 class InfoFragment : Fragment() {
 
@@ -51,8 +46,6 @@ class InfoFragment : Fragment() {
 //                NavigationUI.onNavDestinationSelected(item,
 //                        Navigation.findNavController(activity!!, R.id.nav_host_fragment))
 //                        || super.onOptionsItemSelected(item)
-
-
 
                 activity?.bnv_bottom_navigation?.visibility = View.GONE
                 return true
