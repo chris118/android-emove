@@ -1,6 +1,7 @@
 package com.boyu.emove.main.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -25,50 +26,45 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        this.setupNavigationController()
         val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        bnv_bottom_navigation.visibility = View.VISIBLE
+        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
+    }
+
+    private fun setupNavigationController() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         //enable the back button
         setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
-//        NavigationUI.setupWithNavController(bnv_bottom_navigation, navController)
+        NavigationUI.setupWithNavController(bnv_bottom_navigation, navController)
 
 
-        bnv_bottom_navigation.selectedItemId = R.id.infoFragment
-//        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
-////            NavigationUI.onNavDestinationSelected(item,
-////                    Navigation.findNavController(this, R.id.nav_host_fragment))
-////                    || super.onOptionsItemSelected(item)
-//
-////            val navi =  Navigation.findNavController(this, R.id.nav_host_fragment)
-//
-//
-//            when(item.itemId) {
-//                com.boyu.emove.R.id.homeFragment -> {
-////                    switchTab(0)
-//                     supportActionBar?.hide()
-////                    navi.navigate(R.id.homeFragment)
-//                }
-//                com.boyu.emove.R.id.infoFragment -> {
-////                    switchTab(1)
-//                    supportActionBar?.show()
-////                    navi.navigate(R.id.infoFragment)
-//                }
-//                com.boyu.emove.R.id.orderListFragment -> {
-////                    switchTab(2)
-//                    supportActionBar?.hide()
-////                    navi.navigate(R.id.orderListFragment)
-//                }
-//            }
-//            return@setOnNavigationItemSelectedListener true
-//
-//
-//        }
-    }
+        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
+            NavigationUI.onNavDestinationSelected(item,
+                    Navigation.findNavController(this, R.id.nav_host_fragment))
+                    || super.onOptionsItemSelected(item)
 
-    override fun onSupportNavigateUp(): Boolean {
-        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
+            when(item.itemId) {
+                com.boyu.emove.R.id.homeFragment -> {
+//                    switchTab(0)
+                    supportActionBar?.hide()
+                }
+                com.boyu.emove.R.id.infoFragment -> {
+//                    switchTab(1)
+                    supportActionBar?.show()
+                }
+                com.boyu.emove.R.id.orderListFragment -> {
+//                    switchTab(2)
+                    supportActionBar?.hide()
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 
 //    private fun switchTab(index: Int){
