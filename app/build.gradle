@@ -32,10 +32,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
-    //kotlin
+    // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    //support
+    // support
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     // ViewModel and LiveData
@@ -44,11 +44,15 @@ dependencies {
     // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
-//    implementation "android.arch.navigation:navigation-fragment:$nav_version"
-//    implementation "android.arch.navigation:navigation-ui:$nav_version"
-//    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
-//    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
 
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    //dagger
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 }
