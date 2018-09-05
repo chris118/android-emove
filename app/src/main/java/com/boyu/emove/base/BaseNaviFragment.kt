@@ -10,8 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Created by chrisw on 2018/8/28.
  */
-abstract class BaseNaviFragment(): Fragment() {
-    abstract fun getTargetLayoutId(): Int
+abstract class BaseNaviFragment(): BaseFragment() {
 
     init {
         setHasOptionsMenu(true)
