@@ -2,16 +2,14 @@ package com.boyu.emove.Login.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.boyu.emove.Login.viewmodel.LoginViewModel
-import com.boyu.emove.base.BaseActivity
+import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.R
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class LoginActivity : BaseActivity() {
     private val TAG = LoginActivity::class.java.simpleName
@@ -23,11 +21,12 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
         appComponent.inject(this)
 
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         if(viewModel != null ){
+            viewModel?.sendVerifyCode("15618516930")
             Log.d(TAG, "hello")
         }
 

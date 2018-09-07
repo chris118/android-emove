@@ -1,8 +1,6 @@
-package com.boyu.emove.base
+package com.boyu.emove.base.ui
 
-import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.boyu.emove.R
 import kotlinx.android.synthetic.main.activity_main.*

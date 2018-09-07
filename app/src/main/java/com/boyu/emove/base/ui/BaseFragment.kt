@@ -1,4 +1,4 @@
-package com.boyu.emove.base
+package com.boyu.emove.base.ui
 
 import androidx.fragment.app.Fragment
 import com.boyu.emove.AndroidApplication

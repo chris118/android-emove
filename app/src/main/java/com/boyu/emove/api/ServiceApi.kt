@@ -12,5 +12,5 @@ interface ServiceApi {
     }
 
     @GET(SEND_VERIFY_CODE)
-    fun sendVerifyCode(mobile: String): Call<Response<String>>
+    fun sendVerifyCode(mobile: String): Call<BaseResponse<String>>
 }

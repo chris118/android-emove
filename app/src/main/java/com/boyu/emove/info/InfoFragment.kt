@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.boyu.emove.R
-import com.boyu.emove.base.BaseNaviFragment
+import com.boyu.emove.base.ui.BaseNaviFragment
 
 class InfoFragment : BaseNaviFragment() {
     companion object {
