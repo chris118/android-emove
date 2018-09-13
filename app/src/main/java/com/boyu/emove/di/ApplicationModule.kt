@@ -7,6 +7,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
@@ -20,8 +21,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides @Singleton fun provideRetrofit(): Retrofit {
         return Retrofit
                 .Builder()
-                .baseUrl("http://m.ebanjia.cn/")
+                .baseUrl("http://api.ebanjia.cn/")
                 .client(createClient())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
 

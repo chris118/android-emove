@@ -11,5 +11,5 @@ class EmoveService @Inject constructor(retrofit: Retrofit): ServiceApi {
         retrofit.create(ServiceApi::class.java)
     }
 
-    override fun sendVerifyCode(mobile: String) = serviceApi.sendVerifyCode(mobile)
+    override fun sendVerifyCode(username: String) = serviceApi.sendVerifyCode(username)
 }

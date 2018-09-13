@@ -10,9 +10,9 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [ApplicationModule::class])
+@Component(modules = [ApplicationModule::class, ViewModelModule::class])
 interface ApplicationComponent {
     fun inject(application: AndroidApplication)
-    fun inject(movieDetailsFragment: LoginActivity)
+    fun inject(loginActivity: LoginActivity)
 
 }

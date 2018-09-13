@@ -2,11 +2,13 @@ package com.boyu.emove.Login.ui
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.boyu.emove.Login.viewmodel.LoginViewModel
 import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.R
+import com.boyu.emove.extension.createViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -21,13 +23,12 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         appComponent.inject(this)
+        viewModel = createViewModel(viewModelFactory) {
+            this.sendVerifyCodeResponse.observe(this@LoginActivity, Observer {
+                Log.d(TAG, "$(it.)")
 
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        if(viewModel != null ){
-            viewModel?.sendVerifyCode("15618516930")
-            Log.d(TAG, "hello")
+            } )
         }
 
         initUI()
@@ -47,6 +48,8 @@ class LoginActivity : BaseActivity() {
                     tv_code.text = "获取验证码"
                 }
             }, 0, 1, TimeUnit.SECONDS)
+
+            viewModel?.sendVerifyCode("15618516930")
         }
 
         btn_login.setOnClickListener {
