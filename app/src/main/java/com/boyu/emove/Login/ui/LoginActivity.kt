@@ -8,6 +8,7 @@ import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.extension.createViewModel
 import com.boyu.emove.main.ui.MainActivity
+import com.boyu.emove.utils.SharedPreferencesUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -15,6 +16,8 @@ import java.util.concurrent.TimeUnit
 class LoginActivity : BaseActivity() {
     private val TAG = LoginActivity::class.java.simpleName
     private var counter = 5
+    private var token by SharedPreferencesUtil(this@LoginActivity,"token","")
+    private var uid by SharedPreferencesUtil(this@LoginActivity,"uid","")
 
     var viewModel: LoginViewModel? = null
 
@@ -27,7 +30,7 @@ class LoginActivity : BaseActivity() {
             this.sendVerifyCodeResponse.observe(this@LoginActivity, Observer {
                 Log.d(TAG, "$(it.)")
 
-            } )
+            })
         }
 
         initUI()
