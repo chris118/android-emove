@@ -2,8 +2,6 @@ package com.boyu.emove.base.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.boyu.emove.AndroidApplication

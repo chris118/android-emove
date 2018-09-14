@@ -5,6 +5,6 @@ package com.boyu.emove.api
  */
 data class BaseResponse<T>(var code: Int, var msg: String, var result: T) {
     companion object {
-        val emptyResponse = BaseResponse(-1, "", "")
+        fun empty() = BaseResponse(-1, "", "")
     }
 }

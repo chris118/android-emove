@@ -3,12 +3,11 @@ package com.boyu.emove.Login.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.boyu.emove.Login.viewmodel.LoginViewModel
-import com.boyu.emove.base.ui.BaseActivity
-import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.R
+import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.extension.createViewModel
+import com.boyu.emove.main.ui.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit

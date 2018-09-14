@@ -12,7 +12,8 @@ abstract class BaseInteractor<in Params, out Type> where Type: Any {
 
     abstract suspend fun run(params: Params): Type
 
-    //操作符重载 实例化时调用
+    //When you specify an invoke operator on a class, it can be called on
+    // any instances of the class without a method name!
     operator fun invoke(params: Params, onResult:(result: Type) -> Unit = {}) {
         val job = async(CommonPool) {
             run(params)

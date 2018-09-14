@@ -6,8 +6,8 @@ package com.boyu.emove.base.Repository
 import retrofit2.Call
 
 open class BaseRepository {
-    protected fun<T> request(call: Call<T>, callback: (T) -> T) : T{
+    protected fun<T> request(call: Call<T>) : T?{
         val response = call.execute()
-        return callback(response.body()!!)
+        return response.body()
     }
 }
