@@ -19,6 +19,7 @@ package com.boyu.emove.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.boyu.emove.Login.viewmodel.LoginViewModel
+import com.boyu.emove.info.viewmodel.InfoViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -32,4 +33,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindsLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InfoViewModel::class)
+    abstract fun bindsInfoViewModel(InfoViewModel: InfoViewModel): ViewModel
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.boyu.emove.Login.ui.LoginActivity
@@ -17,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
     private val TAG = MainActivity::class.java.simpleName
     private var token by SharedPreferencesUtil(this@MainActivity,"token","")
-    private var uid by SharedPreferencesUtil(this@MainActivity,"uid","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,6 @@ class MainActivity : BaseActivity() {
         this.setupNavigationController()
 
         checkToken()
-
-        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -74,49 +72,4 @@ class MainActivity : BaseActivity() {
             return@setOnNavigationItemSelectedListener true
         }
     }
-
-
-//    private var homeFragment: HomeFragment? = null
-//    private var infoFragment: InfoFragment? = null
-//    private var orderListFragment: OrderListFragment? = null
-//    private var fragmentList: Array<Fragment?> = arrayOfNulls(3)
-//    private var seletedFragment: Fragment? = null
-
-//    private fun switchTab(index: Int){
-//        when(index) {
-//            0 -> {
-//                if(homeFragment == null){
-//                    homeFragment = HomeFragment.newInstance()
-//                    fragmentList[0] = homeFragment!!
-//                }
-//            }
-//            1 -> {
-//                if(infoFragment == null){
-//                    infoFragment = InfoFragment.newInstance()
-//                    fragmentList[1] = infoFragment!!
-//                }
-//            }
-//            2 -> {
-//                if(orderListFragment == null){
-//                    orderListFragment = OrderListFragment.newInstance()
-//                    fragmentList[2] = orderListFragment!!
-//                }
-//            }
-//        }
-//        val transaction = supportFragmentManager.beginTransaction()
-//        var toFragment = fragmentList[index]
-//
-//        if(seletedFragment == null) {
-//            transaction.add(R.id.fl_container, toFragment!!).commit()
-//            seletedFragment = toFragment
-//            return
-//        }
-//
-//        if(!toFragment?.isAdded!!) {
-//            transaction.add(R.id.fl_container, toFragment!!)
-//        }
-//        transaction.hide(seletedFragment!!).show(toFragment!!).commit()
-//        seletedFragment = toFragment
-//
-//    }
 }

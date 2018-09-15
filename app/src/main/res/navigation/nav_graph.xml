@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.boyu.emove.info.InfoFragment"
-        android:label="info_fragment"
+        android:name="com.boyu.emove.info.ui.InfoFragment"
+        android:label="基本信息"
         tools:layout="@layout/info_fragment" >
         <action
             android:id="@+id/action_infoFragment_to_goodsFragment"
@@ -31,6 +31,6 @@
     <fragment
         android:id="@+id/orderListFragment"
         android:name="com.boyu.emove.orderlist.OrderListFragment"
-        android:label="order_list_fragment"
+        android:label="订单列表"
         tools:layout="@layout/order_list_fragment" />
 </navigation>

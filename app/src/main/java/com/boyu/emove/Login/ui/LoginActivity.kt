@@ -21,7 +21,7 @@ class LoginActivity : BaseActivity() {
     private var token by SharedPreferencesUtil(this@LoginActivity,"token","")
     private var uid by SharedPreferencesUtil(this@LoginActivity,"uid","")
 
-    var viewModel: LoginViewModel? = null
+    private var viewModel: LoginViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
