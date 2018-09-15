@@ -20,6 +20,5 @@ interface ServiceApi {
 
     @POST(LOGIN)
     fun login(@Query("username")username: String,
-              @Query("code")code: String,
-              @Query("eappid")eappid: Int): Call<BaseResponse<LoginResponse>>
+              @Query("code")code: String): Call<BaseResponse<LoginResponse>>
 }

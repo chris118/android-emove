@@ -15,5 +15,5 @@ class LoginInteractor @Inject constructor(private val repository: LoginRepositor
         return repository.login(params)!!
     }
 
-    data class Params(val username: String, val code: String, val eappid: Int)
+    data class Params(val username: String, val code: String)
 }

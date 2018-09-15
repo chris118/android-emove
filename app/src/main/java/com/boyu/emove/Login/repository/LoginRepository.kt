@@ -17,6 +17,6 @@ class LoginRepository @Inject constructor(private val service: EmoveService): Ba
     }
 
     fun login(params: LoginInteractor.Params): BaseResponse<LoginResponse>? {
-        return request(service.login(params.username, params.code, params.eappid))
+        return request(service.login(params.username, params.code))
     }
 }
