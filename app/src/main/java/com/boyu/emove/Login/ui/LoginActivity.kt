@@ -3,6 +3,7 @@ package com.boyu.emove.Login.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import com.boyu.emove.Login.interactor.LoginInteractor
 import com.boyu.emove.Login.viewmodel.LoginViewModel
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
@@ -28,11 +29,15 @@ class LoginActivity : BaseActivity() {
         appComponent.inject(this)
         viewModel = createViewModel(viewModelFactory) {
             this.sendVerifyCodeResponse.observe(this@LoginActivity, Observer {
-                Log.d(TAG, "$(it.)")
+                Log.d(TAG, "")
+            })
 
+            this.loginResponse.observe(this@LoginActivity, Observer {
+                Log.d(TAG, "token = ${it.result.token}")
+                token = it.result.token
+                uid = it.result.uid.toString()
             })
         }
-
         initUI()
     }
 
@@ -55,7 +60,9 @@ class LoginActivity : BaseActivity() {
         }
 
         btn_login.setOnClickListener {
-            startActivity<MainActivity>()
+            val params = LoginInteractor.Params("15618516930", "789456", 8102)
+            viewModel?.login(params)
+//            startActivity<MainActivity>()
         }
     }
 }

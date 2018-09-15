@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.boyu.emove.Login.entity.LoginResponse
 import com.boyu.emove.Login.interactor.LoginInteractor
+import com.boyu.emove.Login.interactor.SendCodeInteractor
+import com.boyu.emove.api.BaseResponse
 import javax.inject.Inject
 
 /**
@@ -12,13 +14,23 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(): ViewModel() {
 
     @Inject
-    lateinit var interactor: LoginInteractor
+    lateinit var sendCode: SendCodeInteractor
 
-    var sendVerifyCodeResponse: MutableLiveData<LoginResponse> = MutableLiveData()
+    @Inject
+    lateinit var login: LoginInteractor
+
+    var sendVerifyCodeResponse: MutableLiveData<BaseResponse<String>> = MutableLiveData()
+    var loginResponse: MutableLiveData<BaseResponse<LoginResponse>> = MutableLiveData()
 
     fun sendVerifyCode(mobile: String) {
-        interactor(mobile) {
+        sendCode(mobile) {
             (this@LoginViewModel).sendVerifyCodeResponse.value = it
+        }
+    }
+
+    fun login(params: LoginInteractor.Params) {
+        login(params) {
+            (this@LoginViewModel).loginResponse.value = it
         }
     }
 }

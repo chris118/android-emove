@@ -1,23 +1,32 @@
 package com.boyu.emove.main.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.boyu.emove.Login.ui.LoginActivity
 import com.boyu.emove.R
+import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.main.viewmodel.MainViewModel
+import com.boyu.emove.utils.SharedPreferencesUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val TAG = MainActivity::class.java.simpleName
+    private var token by SharedPreferencesUtil(this@MainActivity,"token","")
+    private var uid by SharedPreferencesUtil(this@MainActivity,"uid","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         this.setupNavigationController()
+
+        checkToken()
+
         val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
@@ -28,6 +37,13 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         bnv_bottom_navigation.visibility = View.VISIBLE
         super.onBackPressed()
+    }
+
+    private fun checkToken() {
+        Log.d(TAG, token)
+        if (token.length == 0) {
+            startActivity<LoginActivity>()
+        }
     }
 
     private fun setupNavigationController() {
