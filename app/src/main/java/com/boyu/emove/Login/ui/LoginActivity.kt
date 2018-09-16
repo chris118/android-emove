@@ -47,10 +47,10 @@ class LoginActivity : BaseActivity() {
             })
         }
 
-        initUI()
+        initializeView()
     }
 
-    private fun initUI() {
+    private fun initializeView() {
         tv_code.setOnClickListener {
             tv_code.isEnabled = false
             val executor = Executors.newScheduledThreadPool(1)

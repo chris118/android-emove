@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionManager xmlns:android="http://schemas.android.com/apk/res/android">
-    <transition android:fromScene="@layout/info_fragment"
-        android:toScene="@layout/goods_fragment"
+    <transition android:fromScene="@layout/fragment_info"
+        android:toScene="@layout/fragment_goods"
         android:transition="@transition/changebounds"/>
 </transitionManager>

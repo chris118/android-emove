@@ -19,7 +19,7 @@ class GoodsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.goods_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_goods, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

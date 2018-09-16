@@ -9,7 +9,7 @@
         android:id="@+id/infoFragment"
         android:name="com.boyu.emove.info.ui.InfoFragment"
         android:label="基本信息"
-        tools:layout="@layout/info_fragment" >
+        tools:layout="@layout/fragment_info" >
         <action
             android:id="@+id/action_infoFragment_to_goodsFragment"
             app:destination="@+id/goodsFragment"
@@ -22,15 +22,15 @@
         android:id="@+id/goodsFragment"
         android:name="com.boyu.emove.goods.GoodsFragment"
         android:label="goods_fragment"
-        tools:layout="@layout/goods_fragment" />
+        tools:layout="@layout/fragment_goods" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.boyu.emove.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/orderListFragment"
         android:name="com.boyu.emove.orderlist.OrderListFragment"
         android:label="订单列表"
-        tools:layout="@layout/order_list_fragment" />
+        tools:layout="@layout/fragment_order_list" />
 </navigation>

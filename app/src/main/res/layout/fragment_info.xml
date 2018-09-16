@@ -7,12 +7,11 @@
     android:background="@android:color/holo_purple"
     android:orientation="vertical"
     tools:context=".info.ui.InfoFragment">
-
-    <TextView
-        android:id="@+id/textView3"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="info"
-        android:textSize="48sp" />
+        android:layout_height="match_parent"
+        android:background="@color/greyColor"
+        />
 
 </RelativeLayout>
