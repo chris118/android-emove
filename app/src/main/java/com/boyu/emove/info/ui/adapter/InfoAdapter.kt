@@ -47,6 +47,8 @@ class InfoAdapter
             ItemType.HEADER.ordinal -> return ViewHolder(parent.inflate(R.layout.item_cell_header), viewType)
             ItemType.INPUTITEM.ordinal -> return ViewHolder(parent.inflate(R.layout.item_cell_input), viewType)
             ItemType.SELECTITEM.ordinal -> return ViewHolder(parent.inflate(R.layout.item_cell_select), viewType)
+            ItemType.OUT_DIS.ordinal -> return ViewHolder(parent.inflate(R.layout.item_cell_input), viewType)
+            ItemType.IN_DIS.ordinal -> return ViewHolder(parent.inflate(R.layout.item_cell_input), viewType)
         }
         return ViewHolder(parent.inflate(R.layout.item_cell_header), viewType)
     }
@@ -120,6 +122,8 @@ class InfoAdapter
                     }
                 })
             }
+
+
             5 + offset_out  ->  holder.tvHeader?.text = "请在下方填写您的搬入地址"
             6 + offset_out  ->  {
                 holder.tvTitle?.let {
@@ -157,7 +161,7 @@ class InfoAdapter
             }
         }
         holder.itemView.setOnClickListener {
-           clickListener(position)
+            clickListener(position)
         }
     }
 
@@ -194,12 +198,13 @@ class InfoAdapter
             1 -> return ItemType.INPUTITEM.ordinal
             2 -> return ItemType.SELECTITEM.ordinal
             3 + offset_out -> return ItemType.SELECTITEM.ordinal
-            4 + offset_out -> return ItemType.INPUTITEM.ordinal
+            4 + offset_out -> return ItemType.OUT_DIS.ordinal
+
             5 + offset_out -> return ItemType.HEADER.ordinal
             6 + offset_out -> return ItemType.INPUTITEM.ordinal
             7 + offset_out -> return ItemType.SELECTITEM.ordinal
             8 + offset_out + offset_in -> return ItemType.SELECTITEM.ordinal
-            9 + offset_out + offset_in -> return ItemType.INPUTITEM.ordinal
+            9 + offset_out + offset_in -> return ItemType.IN_DIS.ordinal
 
         }
         return ItemType.HEADER.ordinal
@@ -220,11 +225,19 @@ class InfoAdapter
                     tvTitle = itemView.tv_cell_select_title
                     tvValue = itemView.tv_cell_select_value
                 }
+                ItemType.IN_DIS.ordinal -> {
+                    tvTitle = itemView.tv_cell_input_title
+                    tvValue = itemView.tv_cell_input_value
+                }
+                ItemType.OUT_DIS.ordinal -> {
+                    tvTitle = itemView.tv_cell_input_title
+                    tvValue = itemView.tv_cell_input_value
+                }
             }
         }
     }
 
     enum class ItemType {
-        HEADER, SELECTITEM, INPUTITEM
+        HEADER, SELECTITEM, INPUTITEM, OUT_DIS, IN_DIS
     }
 }
