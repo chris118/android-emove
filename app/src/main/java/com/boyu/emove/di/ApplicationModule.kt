@@ -1,12 +1,18 @@
 package com.boyu.emove.di
 
+import android.content.Intent
+import android.util.Log
 import com.boyu.emove.AndroidApplication
 import com.boyu.emove.BuildConfig
+import com.boyu.emove.Login.ui.LoginActivity
+import com.boyu.emove.api.BaseResponse
+import com.boyu.emove.api.BaseResponse2
+import com.boyu.emove.utils.SharedPreferencesUtil
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -33,19 +39,52 @@ class ApplicationModule(private val application: AndroidApplication) {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-            val requestInterceptor = RequestInterceptor()
+            val requestInterceptor = RequestInterceptor(application)
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
             okHttpClientBuilder.addInterceptor(requestInterceptor)
         }
         return okHttpClientBuilder.build()
     }
 
-    private class RequestInterceptor(): Interceptor {
+    private class RequestInterceptor(val application: AndroidApplication): Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             var originalRequest = chain.request()
-            val url = originalRequest.url().newBuilder().addQueryParameter("eappid","8102").build()
+
+            var token by SharedPreferencesUtil(this@RequestInterceptor.application,"token","")
+            var uid by SharedPreferencesUtil(this@RequestInterceptor.application,"uid","")
+
+            var url: HttpUrl? = null
+            if(token.length > 0) {
+                 url = originalRequest.url().newBuilder()
+                        .addQueryParameter("eappid","8102")
+                        .addQueryParameter("banjia_type", "1")
+                         .addQueryParameter("uid",uid)
+                         .addQueryParameter("token",token)
+                        .build()
+            }else {
+                url = originalRequest.url().newBuilder()
+                        .addQueryParameter("eappid","8102")
+                        .addQueryParameter("banjia_type", "1")
+                        .build()
+            }
             originalRequest = originalRequest.newBuilder().url(url).build()
-            return chain.proceed(originalRequest)
+
+            // response
+            val response = chain.proceed(originalRequest)
+
+            val responseString = response.body()?.string()
+            val mediaType = response.body()?.contentType()
+
+            var baseResponse = Gson().fromJson(responseString, BaseResponse2::class.java)
+            if (baseResponse.code == 6004){
+                token = ""
+                uid = ""
+                application.startActivity(Intent(application, LoginActivity::class.java))
+            }
+
+            val responseBody = ResponseBody.create(mediaType, responseString)
+
+            return response.newBuilder().body(responseBody).build()
         }
 
     }

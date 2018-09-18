@@ -8,3 +8,5 @@ data class BaseResponse<T>(var code: Int, var msg: String, var result: T) {
         fun empty() = BaseResponse(-1, "", null)
     }
 }
+
+data class BaseResponse2(var code: Int, var msg: String)

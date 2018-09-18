@@ -1,6 +1,7 @@
 package com.boyu.emove.api
 
 import com.boyu.emove.Login.entity.LoginResponse
+import com.boyu.emove.info.entity.InfoResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -13,6 +14,8 @@ class EmoveService @Inject constructor(retrofit: Retrofit): ServiceApi {
         = serviceApi.login(username, code)
 
     override fun sendVerifyCode(username: String) = serviceApi.sendVerifyCode(username)
+
+    override fun getInfo() = serviceApi.getInfo()
 
     private val serviceApi by lazy {
         retrofit.create(ServiceApi::class.java)
