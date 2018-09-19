@@ -218,7 +218,7 @@ class InfoAdapter
             when(viewType) {
                 ItemType.HEADER.ordinal -> tvHeader = itemView.tv_text
                 ItemType.INPUTITEM.ordinal -> {
-                    tvTitle = itemView.tv_cell_input_title
+                    tvTitle = itemView.tv_title1
                     tvValue = itemView.tv_cell_input_value
                 }
                 ItemType.SELECTITEM.ordinal -> {
@@ -226,11 +226,11 @@ class InfoAdapter
                     tvValue = itemView.tv_cell_select_value
                 }
                 ItemType.IN_DIS.ordinal -> {
-                    tvTitle = itemView.tv_cell_input_title
+                    tvTitle = itemView.tv_title1
                     tvValue = itemView.tv_cell_input_value
                 }
                 ItemType.OUT_DIS.ordinal -> {
-                    tvTitle = itemView.tv_cell_input_title
+                    tvTitle = itemView.tv_title1
                     tvValue = itemView.tv_cell_input_value
                 }
             }

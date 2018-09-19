@@ -9,9 +9,17 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ebanjia'
+            keyPassword 'putao123'
+            storeFile file('/Users/admin/src/emove/android-emove/ebianjia-putao123')
+            storePassword 'putao123'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.boyu.emove"
+        applicationId "com.boyu.ebanjia"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -23,44 +31,37 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     // support
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-
     // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
-
     // kotlinx-coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
-
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
     // dagger
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
-
     // retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-
     // tools
     implementation 'com.contrarywind:Android-PickerView:3.2.7'
-
 }

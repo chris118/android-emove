@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#0F8EE9</color>
     <color name="colorAccent">#0F8EE9</color>
     <color name="themeColor">#0f8ee9</color>
-    <color name="textColor">#cdcdcd</color>
-    <color name="f5Color">#F5F5F5</color>
+    <color name="textColor">#CDCDCD</color>
+    <color name="bgColor">#F5F5F5</color>
     <color name="whiteColor">#FFFFFF</color>
 </resources>

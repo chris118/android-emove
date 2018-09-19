@@ -5,7 +5,7 @@ import com.boyu.emove.api.BaseResponse
 /**
  * Created by chrisw on 2018/9/18.
  */
-data class InfoResponse(
+data class Info(
     val moveout: Moveout,
     val movein: Movein
 )

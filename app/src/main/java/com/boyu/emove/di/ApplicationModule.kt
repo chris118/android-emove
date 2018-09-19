@@ -72,7 +72,7 @@ class ApplicationModule(private val application: AndroidApplication) {
             // response
             val response = chain.proceed(originalRequest)
 
-            val responseString = response.body()?.string()
+            var responseString = response.body()?.string()
             val mediaType = response.body()?.contentType()
 
             var baseResponse = Gson().fromJson(responseString, BaseResponse2::class.java)
