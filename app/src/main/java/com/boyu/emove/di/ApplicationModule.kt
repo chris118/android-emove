@@ -79,7 +79,9 @@ class ApplicationModule(private val application: AndroidApplication) {
             if (baseResponse.code == 6004){
                 token = ""
                 uid = ""
-                application.startActivity(Intent(application, LoginActivity::class.java))
+                var intent = Intent(application, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                application.startActivity(intent)
             }
 
             val responseBody = ResponseBody.create(mediaType, responseString)

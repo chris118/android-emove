@@ -1,6 +1,7 @@
 package com.boyu.emove
 
 import android.app.Application
+import com.baidu.mapapi.SDKInitializer
 import com.boyu.emove.di.ApplicationComponent
 import com.boyu.emove.di.ApplicationModule
 import com.boyu.emove.di.DaggerApplicationComponent
@@ -17,5 +18,7 @@ class AndroidApplication : Application() {
     }
     override fun onCreate() {
         super.onCreate()
+
+        SDKInitializer.initialize(this)
     }
 }

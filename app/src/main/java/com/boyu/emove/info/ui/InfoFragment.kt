@@ -1,5 +1,6 @@
 package com.boyu.emove.info.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -41,6 +42,27 @@ class InfoFragment : BaseNaviFragment() {
     private lateinit var inElevatorPicker: OptionsPickerView<String>
     private lateinit var inFloorPicker: OptionsPickerView<String>
     private lateinit var inAssemblePicker: OptionsPickerView<String>
+    private var address_type = 0 // 0: out  1: in
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        appComponent.inject(this)
+        viewModel = createViewModel(viewModelFactory) {
+            this.getInfoResponse.observe(this@InfoFragment, Observer {
+                if(it.code == 0){
+                    movein = it.result.movein
+                    moveout = it.result.moveout
+                    this@InfoFragment.refreshData()
+                }
+            })
+
+            this.updateInfoResponse.observe(this@InfoFragment, Observer {
+                if (it.code == 0){
+                    goNext()
+                }
+            })
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -51,24 +73,23 @@ class InfoFragment : BaseNaviFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        appComponent.inject(this)
-        viewModel = createViewModel(viewModelFactory) {
-            this.getInfoResponse.observe(this@InfoFragment, Observer {
-               if(it.code == 0){
-                   movein = it.result.movein
-                   moveout = it.result.moveout
-                   this@InfoFragment.refreshData()
-               }
-            })
-
-            this.updateInfoResponse.observe(this@InfoFragment, Observer {
-                if (it.code == 0){
-                    goNext()
-                }
-            })
-        }
         initializeView()
         loadData()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 10000 && resultCode == 10001) {
+            if(address_type == 0){
+                moveout.address =  data?.getStringExtra("address_name") ?: ""
+                moveout.uid = data?.getStringExtra("address_uid") ?: ""
+                tv_out_address.text = moveout.address
+            }else {
+                movein.address =  data?.getStringExtra("address_name") ?: ""
+                movein.uid = data?.getStringExtra("address_uid") ?: ""
+                tv_in_address.text = movein.address
+            }
+        }
     }
 
     override fun getTargetLayoutId(): Int {
@@ -121,8 +142,10 @@ class InfoFragment : BaseNaviFragment() {
     private fun initializeView() {
 
         //搬出
-        ll_out_address.setOnClickListener { _ ->
-            //
+        tv_out_address.setOnClickListener { _ ->
+            address_type = 0
+            val intent = Intent(activity, AddressActivity::class.java)
+            startActivityForResult(intent, 10000)
         }
         ll_out_elevator.setOnClickListener { _ ->
             outElevatorPicker?.show()
@@ -146,8 +169,10 @@ class InfoFragment : BaseNaviFragment() {
         })
 
         //搬入
-        ll_in_address.setOnClickListener { _ ->
-            //
+        tv_in_address.setOnClickListener { _ ->
+            address_type = 1
+            val intent = Intent(activity, AddressActivity::class.java)
+            startActivityForResult(intent, 10000)
         }
         ll_in_elevator.setOnClickListener { _ ->
             inElevatorPicker?.show()
@@ -160,7 +185,9 @@ class InfoFragment : BaseNaviFragment() {
         }
         tv_in_distance.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                movein.distance_meter = p0.toString().toInt()
+                if(p0.toString().length > 0){
+                    movein.distance_meter = p0.toString().toInt()
+                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
