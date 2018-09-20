@@ -2,6 +2,7 @@ package com.boyu.emove.di
 
 import com.boyu.emove.AndroidApplication
 import com.boyu.emove.Login.ui.LoginActivity
+import com.boyu.emove.goods.ui.GoodsFragment
 import com.boyu.emove.info.ui.AddressActivity
 import com.boyu.emove.info.ui.InfoFragment
 import dagger.Component
@@ -18,4 +19,5 @@ interface ApplicationComponent {
     fun inject(loginActivity: LoginActivity)
     fun inject(infoFragment: InfoFragment)
     fun inject(infoFragment: AddressActivity)
+    fun inject(goodsFragment: GoodsFragment)
 }

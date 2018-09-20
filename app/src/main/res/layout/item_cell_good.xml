@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/whiteColor"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_minus"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/tv_good_number"
+        android:background="@drawable/selector_button_minus"
+        android:text="-"
+        android:textColor="@color/whiteColor" />
+
+    <TextView
+        android:id="@+id/tv_goods_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/btn_minus"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/selector_button_add"
+        android:text="+"
+        android:textColor="@color/whiteColor" />
+
+    <TextView
+        android:id="@+id/tv_good_number"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="7dp"
+        android:layout_toStartOf="@+id/btn_add"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:text="123"
+        android:textSize="12sp" />
+</RelativeLayout>

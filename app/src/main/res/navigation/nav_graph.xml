@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/infoFragment">
+    app:startDestination="@id/goodsFragment">
 
     <fragment
         android:id="@+id/infoFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/goodsFragment"
-        android:name="com.boyu.emove.goods.GoodsFragment"
+        android:name="com.boyu.emove.goods.ui.GoodsFragment"
         android:label="goods_fragment"
         tools:layout="@layout/fragment_goods" />
     <fragment

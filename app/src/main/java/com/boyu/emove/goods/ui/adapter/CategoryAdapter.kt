@@ -1,0 +1,79 @@
+package com.boyu.emove.goods.ui.adapter
+
+import android.annotation.SuppressLint
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.boyu.emove.R
+import com.boyu.emove.extension.inflate
+import com.boyu.emove.goods.entity.FirstCategory
+import com.boyu.emove.goods.entity.SecondCategory
+import kotlinx.android.synthetic.main.item_cell_category.view.*
+import kotlinx.android.synthetic.main.item_cell_sub_category.view.*
+import javax.inject.Inject
+import kotlin.properties.Delegates
+
+/**
+ * Created by chrisw on 2018/9/19.
+ */
+class CategoryAdapter
+@Inject constructor() : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+
+    private var items = arrayListOf<CategoryItem>()
+    internal var data: Pair<List<FirstCategory>, List<SecondCategory>> by Delegates.observable(Pair(ArrayList(), ArrayList())) {
+        _, _, _ ->
+
+        for(category in data.first) {
+            items.add(CategoryItem(category.category_name, ItemType.CATEGORY))
+            for(second_category in data.second) {
+                if(second_category.parent_category_id == category.category_id){
+                    items.add(CategoryItem(second_category.category_name, ItemType.SUBCATEGORY))
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
+        if (viewType == ItemType.CATEGORY.ordinal){
+            return ViewHolder(parent.inflate(R.layout.item_cell_category), viewType)
+        }
+        return ViewHolder(parent.inflate(R.layout.item_cell_sub_category), viewType)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return items[position].categoryType.ordinal
+    }
+
+    @SuppressLint("NewApi")
+    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
+        if(items[position].categoryType == ItemType.CATEGORY){
+            holder.tvText?.text = items[position].categoryName
+        }else {
+            holder.tvText?.text = items[position].categoryName
+        }
+    }
+
+    class ViewHolder(itemView: View, viewType: Int) : RecyclerView.ViewHolder(itemView) {
+        var tvText: TextView? = null
+
+        init {
+            if (viewType == ItemType.CATEGORY.ordinal){
+                tvText = itemView.tv_category_text
+            }else {
+                tvText = itemView.tv_sub_category_text
+            }
+        }
+    }
+
+    data class CategoryItem( var categoryName: String, var categoryType: ItemType)
+
+    enum class ItemType {
+        CATEGORY, SUBCATEGORY
+    }
+}
