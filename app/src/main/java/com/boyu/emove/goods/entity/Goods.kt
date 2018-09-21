@@ -17,8 +17,8 @@ data class FirstCategory(
 )
 
 data class CartGood(
-    val goods_id: Int,
-    val goods_num: Int,
+    var goods_id: Int,
+    var goods_num: Int,
     val goods_name: String,
     val goods_cubage: Double,
     val parent_category_id: Int
@@ -35,4 +35,8 @@ data class AllGood(
     val goods_name: String,
     val goods_cubage: Double,
     val parent_category_id: Int
+)
+
+data class CartGoodBody(
+    var goods: String
 )

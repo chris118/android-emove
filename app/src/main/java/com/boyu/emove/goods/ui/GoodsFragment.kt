@@ -1,26 +1,30 @@
 package com.boyu.emove.goods.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.base.ui.DividerItemDecoration
 import com.boyu.emove.extension.createViewModel
-import com.boyu.emove.goods.entity.AllGood
-import com.boyu.emove.goods.entity.CartGood
-import com.boyu.emove.goods.entity.FirstCategory
-import com.boyu.emove.goods.entity.SecondCategory
+import com.boyu.emove.goods.entity.*
 import com.boyu.emove.goods.ui.adapter.CategoryAdapter
 import com.boyu.emove.goods.ui.adapter.GoodsAdapter
 import com.boyu.emove.goods.viewmodel.GoodsViewModel
 import kotlinx.android.synthetic.main.fragment_goods.*
 import javax.inject.Inject
+import com.google.gson.Gson
+
+
 
 class GoodsFragment : BaseNaviFragment() {
+    private val TAG = GoodsFragment::class.java.simpleName
+
     private var viewModel: GoodsViewModel? = null
 
     @Inject
@@ -56,7 +60,16 @@ class GoodsFragment : BaseNaviFragment() {
                         categoryAdapter.data = Pair(first_category, second_category)
                         goodsAdapter.cart = cart_goods
                         goodsAdapter.data = Pair(second_category, all_goods)
+
+                        updateNumbers()
                     }
+                }
+            })
+
+            this.updateGoodsResponse.observe(this@GoodsFragment, Observer {
+                if(it.code == 0) {
+                    Log.d(TAG, "success")
+                    loadData()
                 }
             })
         }
@@ -88,11 +101,62 @@ class GoodsFragment : BaseNaviFragment() {
         goodRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
 
         goodsAdapter.minusClickListener = {
-
+            this@GoodsFragment.updateCart(it, false)
         }
 
         goodsAdapter.plusClickListener = {
-
+            this@GoodsFragment.updateCart(it, true)
         }
+
+        rl_cart_button.setOnClickListener  {
+            rl_cart_selected.visibility = View.VISIBLE
+        }
+    }
+
+    private fun updateCart(good_id: Int, add: Boolean){
+
+        var step = if(add) 1 else -1
+        var fFoundItem = false
+        //更新购物车 (购物车中有item，更新数量)
+        var cart_goods_temp = ArrayList<CartGood>()
+        for(item in cart_goods) {
+            if (item.goods_id == good_id) {
+                item.goods_num = item.goods_num + step
+                fFoundItem = true
+            }
+            if (item.goods_num >= 0 ) {
+                cart_goods_temp.add(item)
+            }
+        }
+        //增加时 购物车中没有item，则新插入一条
+        if (add){
+            if (fFoundItem == false) {
+                var cartGood = CartGood(good_id, 1, "", 0.0, 0)
+                cart_goods_temp.add(cartGood)
+            }
+        }
+
+        val gson = Gson()
+        val jsonString = gson.toJson(cart_goods_temp)
+        val cart = CartGoodBody(jsonString)
+
+        viewModel?.updateGoods(cart)
+    }
+
+    private fun updateNumbers() {
+        //更新红点数量 更新体积
+        var badge_count = 0
+        var bulk_count = 0.0
+        for (item in cart_goods) {
+            badge_count += item.goods_num
+            bulk_count += item.goods_cubage
+        }
+        tv_badge.text = badge_count.toString()
+        if(badge_count == 0) {
+            tv_badge.visibility = View.INVISIBLE
+        } else {
+            tv_badge.visibility = View.VISIBLE
+        }
+        tv_bulk.text = bulk_count.toString()
     }
 }

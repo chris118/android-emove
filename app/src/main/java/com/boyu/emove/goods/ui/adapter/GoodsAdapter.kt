@@ -27,7 +27,7 @@ class GoodsAdapter
 
     internal var data: Pair<List<SecondCategory>, List<AllGood>> by Delegates.observable(Pair(ArrayList(), ArrayList())) {
         _, _, _ ->
-
+        items.clear()
         for(second_category in data.first) {
             items.add(Item(0, second_category.category_name, ItemType.SUBCATEGORY, 0))
             for(good in data.second) {
@@ -39,7 +39,13 @@ class GoodsAdapter
         notifyDataSetChanged()
     }
 
-    internal var cart: List<CartGood> = ArrayList()
+    internal var cart: List<CartGood> by Delegates.observable(ArrayList()) {
+        _, _,_ ->
+
+        notifyDataSetChanged()
+    }
+
+//    internal var cart: List<CartGood> = ArrayList()
 
     private var items = arrayListOf<Item>()
 

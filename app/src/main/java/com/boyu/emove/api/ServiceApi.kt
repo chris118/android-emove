@@ -1,6 +1,8 @@
 package com.boyu.emove.api
 
 import com.boyu.emove.Login.entity.LoginResponse
+import com.boyu.emove.goods.entity.CartGood
+import com.boyu.emove.goods.entity.CartGoodBody
 import com.boyu.emove.goods.entity.Goods
 import com.boyu.emove.info.entity.Info
 import retrofit2.Call
@@ -14,7 +16,6 @@ interface ServiceApi {
         private const val SEND_VERIFY_CODE = "send/login-code"
         private const val LOGIN = "code/login"
         private const val GETINFO = "cart/address"
-        private const val UPDATEINFO = "cart/address"
         private const val GOODS = "/cart/goods"
     }
 
@@ -28,11 +29,13 @@ interface ServiceApi {
     @GET(GETINFO)
     fun getInfo(): Call<BaseResponse<Info>>
 
-    @POST(UPDATEINFO)
+    @POST(GETINFO)
     fun updateInfo(@Body body: Info): Call<BaseResponse<String>>
 
 
     @GET(GOODS)
     fun getGoods(): Call<BaseResponse<Goods>>
 
+    @POST(GOODS)
+    fun updateGoods(@Body body: CartGoodBody): Call<BaseResponse<String>>
 }

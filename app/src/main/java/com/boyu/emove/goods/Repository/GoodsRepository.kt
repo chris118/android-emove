@@ -3,6 +3,8 @@ package com.boyu.emove.goods.Repository
 import com.boyu.emove.api.BaseResponse
 import com.boyu.emove.api.EmoveService
 import com.boyu.emove.base.Repository.BaseRepository
+import com.boyu.emove.goods.entity.CartGood
+import com.boyu.emove.goods.entity.CartGoodBody
 import com.boyu.emove.goods.entity.Goods
 import com.boyu.emove.info.entity.Info
 import com.boyu.emove.info.entity.Movein
@@ -16,5 +18,9 @@ class GoodsRepository @Inject constructor(private val service: EmoveService): Ba
 
     fun getGoods(): BaseResponse<Goods>? {
         return request(service.getGoods())
+    }
+
+    fun updateGoods(cart: CartGoodBody): BaseResponse<String>? {
+        return request(service.updateGoods(cart))
     }
 }
