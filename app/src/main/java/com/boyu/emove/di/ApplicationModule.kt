@@ -1,15 +1,12 @@
 package com.boyu.emove.di
 
 import android.content.Intent
-import android.util.Log
 import com.boyu.emove.AndroidApplication
 import com.boyu.emove.BuildConfig
-import com.boyu.emove.Login.ui.LoginActivity
-import com.boyu.emove.api.BaseResponse
+import com.boyu.emove.login.ui.LoginActivity
 import com.boyu.emove.api.BaseResponse2
 import com.boyu.emove.utils.SharedPreferencesUtil
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import dagger.Module
 import dagger.Provides
 import okhttp3.*

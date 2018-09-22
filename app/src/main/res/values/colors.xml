@@ -8,5 +8,8 @@
     <color name="bgColor">#F5F5F5</color>
     <color name="whiteColor">#ffffff</color>
     <color name="redColor">#ff0004</color>
+    <color name="orangeColor">#e28401</color>
+    <color name="lightGreyColor">#e4e3e2</color>
+    <color name="greyColor">#949494</color>
 
 </resources>

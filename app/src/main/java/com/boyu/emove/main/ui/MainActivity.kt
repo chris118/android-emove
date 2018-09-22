@@ -3,15 +3,11 @@ package com.boyu.emove.main.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.boyu.emove.Login.ui.LoginActivity
+import com.boyu.emove.login.ui.LoginActivity
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
-import com.boyu.emove.main.viewmodel.MainViewModel
 import com.boyu.emove.utils.SharedPreferencesUtil
 import kotlinx.android.synthetic.main.activity_main.*
 

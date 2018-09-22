@@ -1,0 +1,289 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.boyu.emove.Infoex.ui.InfoExFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_header1"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="请在下方选择您希望的搬家时间"
+                android:textColor="@color/textColor" />
+
+            <RelativeLayout
+                android:id="@+id/ll_out_time"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/selector_cell"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_infoex_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="选择日期"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_out_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toStartOf="@+id/iv_infoex_arrow1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="有"
+                    android:textColor="@android:color/black" />
+
+                <ImageView
+                    android:id="@+id/iv_infoex_arrow1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="12dp"
+                    app:srcCompat="@drawable/arrow" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_out_duratioon"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/selector_cell"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_infoex_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="选择时段"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_out_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toStartOf="@+id/iv_infoex_arrow2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="有"
+                    android:textColor="@android:color/black" />
+
+                <ImageView
+                    android:id="@+id/iv_infoex_arrow2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="12dp"
+                    app:srcCompat="@drawable/arrow" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_header2"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="请在下方填写负责人的联系方式"
+                android:textColor="@color/textColor" />
+
+            <RelativeLayout
+                android:id="@+id/ll_out_name"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/tv_infoex_title3"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:text="负责人"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/tv_out_name"
+                    android:layout_width="260dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_toEndOf="@+id/tv_infoex_title3"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_out_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/tv_infoex_title4"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:text="手机号码"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/tv_out_mobile"
+                    android:layout_width="260dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_toEndOf="@+id/tv_infoex_title4"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_header3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="备注(非必填)"
+                android:textColor="@color/textColor" />
+
+            <RelativeLayout
+                android:id="@+id/ll_out_note"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@android:color/white">
+
+                <EditText
+                    android:id="@+id/tv_out_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/tv_infoex_title5"
+                    android:background="@null"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:inputType="textMultiLine|textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:scrollHorizontally="false"
+                    android:singleLine="false"
+                    android:text="123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_out_invoice"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_cell"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_infoex_title6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="是否需要发票"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_out_invoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toStartOf="@+id/iv_infoex_arrow3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="有"
+                    android:textColor="@android:color/black" />
+
+                <ImageView
+                    android:id="@+id/iv_infoex_arrow3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="12dp"
+                    app:srcCompat="@drawable/arrow" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

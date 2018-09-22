@@ -1,17 +1,24 @@
-package com.boyu.emove.orderlist
+package com.boyu.emove.order
+
 
 import android.os.Bundle
-
+import androidx.fragment.app.Fragment
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.extension.createViewModel
-import com.boyu.emove.orderlist.viewmodel.OrderListViewModel
+import com.boyu.emove.order.viewmodel.OrderViewModel
+import com.boyu.emove.vehicle.ui.VehicleFragment
 
-class OrderListFragment : BaseNaviFragment() {
+/**
+ * A simple [Fragment] subclass.
+ *
+ */
+class OrderFragment : BaseNaviFragment() {
+    private val TAG = VehicleFragment::class.java.simpleName
+    private var viewModel: OrderViewModel? = null
 
-    private val TAG = OrderListFragment::class.java.simpleName
-    private var viewModel: OrderListViewModel? = null
 
     override fun onNext() {
+        goNext()
     }
 
     override fun getTargetLayoutId(): Int {

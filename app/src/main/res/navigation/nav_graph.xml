@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/goodsFragment">
+    app:startDestination="@id/vehicleFragment">
 
     <fragment
         android:id="@+id/infoFragment"
@@ -21,8 +21,16 @@
     <fragment
         android:id="@+id/goodsFragment"
         android:name="com.boyu.emove.goods.ui.GoodsFragment"
-        android:label="goods_fragment"
-        tools:layout="@layout/fragment_goods" />
+        android:label="选择物品"
+        tools:layout="@layout/fragment_goods"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right">
+        <action
+            android:id="@+id/action_goodsFragment_to_infoExFragment"
+            app:destination="@id/infoExFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.boyu.emove.home.HomeFragment"
@@ -33,4 +41,35 @@
         android:name="com.boyu.emove.orderlist.OrderListFragment"
         android:label="订单列表"
         tools:layout="@layout/fragment_order_list" />
+    <fragment
+        android:id="@+id/infoExFragment"
+        android:name="com.boyu.emove.Infoex.ui.InfoExFragment"
+        android:label="联系信息"
+        tools:layout="@layout/fragment_info_ex" >
+        <action
+            android:id="@+id/action_infoExFragment_to_vehicleFragment"
+            app:destination="@id/vehicleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleFragment"
+        android:name="com.boyu.emove.vehicle.ui.VehicleFragment"
+        android:label="fragment_vehicle"
+        tools:layout="@layout/fragment_vehicle" >
+        <action
+            android:id="@+id/action_vehicleFragment_to_orderFragment"
+            app:destination="@id/orderFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.boyu.emove.order.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

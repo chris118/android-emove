@@ -1,10 +1,12 @@
 package com.boyu.emove.api
 
-import com.boyu.emove.Login.entity.LoginResponse
-import com.boyu.emove.goods.entity.CartGood
+import com.boyu.emove.Infoex.entity.InfoEx
+import com.boyu.emove.Infoex.entity.InfoExBody
+import com.boyu.emove.login.entity.LoginResponse
 import com.boyu.emove.goods.entity.CartGoodBody
 import com.boyu.emove.goods.entity.Goods
 import com.boyu.emove.info.entity.Info
+import com.boyu.emove.vehicle.entity.VehicleInfo
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -17,6 +19,9 @@ interface ServiceApi {
         private const val LOGIN = "code/login"
         private const val GETINFO = "cart/address"
         private const val GOODS = "/cart/goods"
+        private const val INFOEX = "/cart/time"
+        private const val VEHICLE = "/cart/fleet"
+
     }
 
     @GET(SEND_VERIFY_CODE)
@@ -38,4 +43,13 @@ interface ServiceApi {
 
     @POST(GOODS)
     fun updateGoods(@Body body: CartGoodBody): Call<BaseResponse<String>>
+
+    @GET(INFOEX)
+    fun getInfoEx(): Call<BaseResponse<InfoEx>>
+
+    @POST(INFOEX)
+    fun updateInfoEx(@Body body: InfoExBody): Call<BaseResponse<String>>
+
+    @GET(VEHICLE)
+    fun getVehicleInfo(@Query("order_by_field")order_by_field: String): Call<BaseResponse<VehicleInfo>>
 }

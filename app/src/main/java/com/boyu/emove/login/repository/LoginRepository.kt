@@ -1,7 +1,7 @@
-package com.boyu.emove.Login.repository
+package com.boyu.emove.login.repository
 
-import com.boyu.emove.Login.entity.LoginResponse
-import com.boyu.emove.Login.interactor.LoginInteractor
+import com.boyu.emove.login.entity.LoginResponse
+import com.boyu.emove.login.interactor.LoginInteractor
 import com.boyu.emove.api.BaseResponse
 import com.boyu.emove.api.EmoveService
 import com.boyu.emove.base.Repository.BaseRepository

@@ -1,7 +1,6 @@
-package com.boyu.emove.Login.interactor
+package com.boyu.emove.login.interactor
 
-import com.boyu.emove.Login.entity.LoginResponse
-import com.boyu.emove.Login.repository.LoginRepository
+import com.boyu.emove.login.repository.LoginRepository
 import com.boyu.emove.api.BaseResponse
 import com.boyu.emove.base.interactor.BaseInteractor
 import javax.inject.Inject

@@ -1,11 +1,11 @@
-package com.boyu.emove.Login.ui
+package com.boyu.emove.login.ui
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.boyu.emove.Login.interactor.LoginInteractor
-import com.boyu.emove.Login.viewmodel.LoginViewModel
+import com.boyu.emove.login.interactor.LoginInteractor
+import com.boyu.emove.login.viewmodel.LoginViewModel
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.extension.createViewModel

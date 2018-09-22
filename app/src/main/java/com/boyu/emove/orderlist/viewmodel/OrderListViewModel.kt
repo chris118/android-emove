@@ -1,4 +1,4 @@
-package com.boyu.emove.orderlist
+package com.boyu.emove.orderlist.viewmodel
 
 import androidx.lifecycle.ViewModel;
 

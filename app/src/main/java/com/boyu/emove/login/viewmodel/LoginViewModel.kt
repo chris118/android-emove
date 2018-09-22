@@ -1,10 +1,10 @@
-package com.boyu.emove.Login.viewmodel
+package com.boyu.emove.login.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.boyu.emove.Login.entity.LoginResponse
-import com.boyu.emove.Login.interactor.LoginInteractor
-import com.boyu.emove.Login.interactor.SendCodeInteractor
+import com.boyu.emove.login.entity.LoginResponse
+import com.boyu.emove.login.interactor.LoginInteractor
+import com.boyu.emove.login.interactor.SendCodeInteractor
 import com.boyu.emove.api.BaseResponse
 import javax.inject.Inject
 

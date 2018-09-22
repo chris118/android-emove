@@ -18,9 +18,12 @@ package com.boyu.emove.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.boyu.emove.Login.viewmodel.LoginViewModel
+import com.boyu.emove.Infoex.viewmodel.InfoexViewModel
+import com.boyu.emove.login.viewmodel.LoginViewModel
 import com.boyu.emove.goods.viewmodel.GoodsViewModel
 import com.boyu.emove.info.viewmodel.InfoViewModel
+import com.boyu.emove.order.viewmodel.OrderViewModel
+import com.boyu.emove.vehicle.viewmodel.VehicleViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -44,4 +47,19 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GoodsViewModel::class)
     abstract fun bindsGoodsViewModel(goodsViewModel: GoodsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InfoexViewModel::class)
+    abstract fun bindsInfoexViewModel(infoexViewModel: InfoexViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VehicleViewModel::class)
+    abstract fun bindsVehicleViewModel(vehicleViewModel: VehicleViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderViewModel::class)
+    abstract fun bindsOrderViewModel(orderViewModel: OrderViewModel): ViewModel
 }

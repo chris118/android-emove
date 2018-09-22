@@ -1,4 +1,4 @@
-package com.boyu.emove.Login.entity
+package com.boyu.emove.login.entity
 
 /**
  * Created by chrisw on 2018/9/13.

@@ -46,10 +46,11 @@ class GoodsFragment : BaseNaviFragment() {
     private var subCategoryHeightList: MutableList<Int> = ArrayList()
 
     override fun onNext() {
+        goNext()
     }
 
     override fun getTargetLayoutId(): Int {
-        return 0
+        return R.id.action_goodsFragment_to_infoExFragment
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
