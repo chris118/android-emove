@@ -1,6 +1,7 @@
 package com.boyu.emove.goods.ui
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.base.ui.DividerItemDecoration
-import com.boyu.emove.extension.createViewModel
+import com.boyu.emove.extension.*
 import com.boyu.emove.goods.entity.*
+import com.boyu.emove.goods.ui.adapter.CartAdapter
 import com.boyu.emove.goods.ui.adapter.CategoryAdapter
 import com.boyu.emove.goods.ui.adapter.GoodsAdapter
 import com.boyu.emove.goods.viewmodel.GoodsViewModel
@@ -31,11 +33,17 @@ class GoodsFragment : BaseNaviFragment() {
     lateinit var categoryAdapter: CategoryAdapter
     @Inject
     lateinit var goodsAdapter: GoodsAdapter
+    @Inject
+    lateinit var cartAdapter: CartAdapter
 
     private  var  first_category: List<FirstCategory> = ArrayList()
     private  var  second_category: List<SecondCategory> = ArrayList()
     private  var  all_goods: List<AllGood> = ArrayList()
     private  var  cart_goods: List<CartGood> = ArrayList()
+
+    //scroll
+    private var goodsRecycleView_contentOffset = 0
+    private var subCategoryHeightList: MutableList<Int> = ArrayList()
 
     override fun onNext() {
     }
@@ -60,15 +68,16 @@ class GoodsFragment : BaseNaviFragment() {
                         categoryAdapter.data = Pair(first_category, second_category)
                         goodsAdapter.cart = cart_goods
                         goodsAdapter.data = Pair(second_category, all_goods)
+                        cartAdapter.data = cart_goods
 
                         updateNumbers()
+                        calculateHeightOfSubCategory()
                     }
                 }
             })
 
             this.updateGoodsResponse.observe(this@GoodsFragment, Observer {
                 if(it.code == 0) {
-                    Log.d(TAG, "success")
                     loadData()
                 }
             })
@@ -108,8 +117,44 @@ class GoodsFragment : BaseNaviFragment() {
             this@GoodsFragment.updateCart(it, true)
         }
 
+        goodRecycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                goodsRecycleView_contentOffset += dy
+                //滚动到的类别index
+                var index = 0
+                var total_height = 0
+                for ((i, item) in subCategoryHeightList.withIndex() ){
+                    total_height += item
+
+                    val offsetDp = goodsRecycleView_contentOffset.toDp
+                    Log.d(TAG, offsetDp.toString())
+
+                    if(offsetDp >= total_height){
+                        index = i + 1
+                    }
+                }
+                categoryAdapter.selectGoodId = second_category[index].category_id
+            }
+        })
+
+
+        cartRecycleView.layoutManager = LinearLayoutManager(activity!!)
+        cartRecycleView.adapter = cartAdapter
+        cartRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
+        cartAdapter.minusClickListener = {
+            this@GoodsFragment.updateCart(it, false)
+        }
+
+        cartAdapter.plusClickListener = {
+            this@GoodsFragment.updateCart(it, true)
+        }
+
         rl_cart_button.setOnClickListener  {
-            rl_cart_selected.visibility = View.VISIBLE
+            rl_cart_selected.visibility = if(rl_cart_selected.visibility == View.GONE) View.VISIBLE else View.GONE
+
+        }
+        ll_mask.setOnClickListener {
+            rl_cart_selected.visibility = View.GONE
         }
     }
 
@@ -157,6 +202,20 @@ class GoodsFragment : BaseNaviFragment() {
         } else {
             tv_badge.visibility = View.VISIBLE
         }
-        tv_bulk.text = bulk_count.toString()
+        tv_bulk.text = String.format("%.2f",bulk_count)
+    }
+
+    private fun calculateHeightOfSubCategory() {
+        subCategoryHeightList.clear()
+        for (_secondCategory in second_category) {
+            var item_count = 0
+            for( item in all_goods) {
+                if(item.parent_category_id == _secondCategory.category_id){
+                    item_count += 1
+                }
+            }
+
+            subCategoryHeightList.add(44 * (item_count + 1))
+        }
     }
 }

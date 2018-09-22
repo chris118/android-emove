@@ -3,6 +3,7 @@ package com.boyu.emove.goods.ui.adapter
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.boyu.emove.R
@@ -25,13 +26,16 @@ class CategoryAdapter
         _, _, _ ->
 
         for(category in data.first) {
-            items.add(CategoryItem(category.category_name, ItemType.CATEGORY))
+            items.add(CategoryItem(category.category_id, category.category_name, ItemType.CATEGORY))
             for(second_category in data.second) {
                 if(second_category.parent_category_id == category.category_id){
-                    items.add(CategoryItem(second_category.category_name, ItemType.SUBCATEGORY))
+                    items.add(CategoryItem(second_category.category_id, second_category.category_name, ItemType.SUBCATEGORY))
                 }
             }
         }
+        notifyDataSetChanged()
+    }
+    internal var selectGoodId: Int by Delegates.observable(0) { _, _, _ ->
         notifyDataSetChanged()
     }
 
@@ -56,22 +60,29 @@ class CategoryAdapter
             holder.tvText?.text = items[position].categoryName
         }else {
             holder.tvText?.text = items[position].categoryName
+            if (items[position].categoryId == selectGoodId){
+                holder.llSelected?.visibility = View.VISIBLE
+            }else{
+                holder.llSelected?.visibility = View.GONE
+            }
         }
     }
 
     class ViewHolder(itemView: View, viewType: Int) : RecyclerView.ViewHolder(itemView) {
         var tvText: TextView? = null
+        var llSelected: LinearLayout? = null
 
         init {
             if (viewType == ItemType.CATEGORY.ordinal){
                 tvText = itemView.tv_category_text
             }else {
                 tvText = itemView.tv_sub_category_text
+                llSelected = itemView.ll_select_category
             }
         }
     }
 
-    data class CategoryItem( var categoryName: String, var categoryType: ItemType)
+    data class CategoryItem(var categoryId: Int, var categoryName: String, var categoryType: ItemType)
 
     enum class ItemType {
         CATEGORY, SUBCATEGORY
