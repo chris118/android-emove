@@ -52,4 +52,7 @@ interface ServiceApi {
 
     @GET(VEHICLE)
     fun getVehicleInfo(@Query("order_by_field")order_by_field: String): Call<BaseResponse<VehicleInfo>>
+
+    @POST(VEHICLE)
+    fun updateVehicleInfo(@Query("fleet_id") fleet_id: Int): Call<BaseResponse<String>>
 }

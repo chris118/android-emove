@@ -25,6 +25,9 @@ class VehicleFragment : BaseNaviFragment() {
     private val TAG = VehicleFragment::class.java.simpleName
     private var viewModel: VehicleViewModel? = null
     private val orderOptions = arrayOf("订单最多", "评分最高", "离我最近")
+    private val orderValues = arrayOf("order","evaluate","none")
+    private var selectedOrderValue = "order"
+
     private var orderPicker: OptionsPickerView<String>? = null
 
 
@@ -32,7 +35,7 @@ class VehicleFragment : BaseNaviFragment() {
     lateinit var vehicleAdapter: VehicleAdapter
 
     override fun onNext() {
-        goNext()
+        viewModel?.updateVehicle(vehicleAdapter.selectedFleet)
     }
 
     override fun getTargetLayoutId(): Int {
@@ -49,6 +52,12 @@ class VehicleFragment : BaseNaviFragment() {
                     Log.d(TAG, "success getVehicleResponse")
                     vehicleAdapter.selectedFleet = it.result.selected_fleet_id
                     vehicleAdapter.data = it.result.usable_fleet
+                }
+            })
+
+            this.updateVehicleResponse.observe(this@VehicleFragment, Observer {
+                if (it.code == 0){
+                    goNext()
                 }
             })
         }
@@ -80,13 +89,14 @@ class VehicleFragment : BaseNaviFragment() {
         // invoice picker
         orderPicker = OptionsPickerView.Builder(activity,
                 OptionsPickerView.OnOptionsSelectListener { option1: Int, option2: Int, option3: Int, v: View? ->
-
+                    selectedOrderValue = orderValues[option1]
+                    loadData()
                 }).build() as OptionsPickerView<String>
         orderPicker?.setPicker(orderOptions.toMutableList())
     }
 
     private fun loadData() {
-        viewModel?.getVehicle("order")
+        viewModel?.getVehicle(selectedOrderValue)
     }
 
 }

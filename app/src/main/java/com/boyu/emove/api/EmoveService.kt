@@ -35,4 +35,6 @@ class EmoveService @Inject constructor(retrofit: Retrofit): ServiceApi {
     override fun updateInfoEx(body: InfoExBody) = serviceApi.updateInfoEx(body)
 
     override fun getVehicleInfo(order_by_field: String) = serviceApi.getVehicleInfo(order_by_field)
+
+    override fun updateVehicleInfo(body: Int): Call<BaseResponse<String>> = serviceApi.updateVehicleInfo(body)
 }

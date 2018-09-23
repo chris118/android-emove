@@ -20,7 +20,7 @@ class VehicleRepository @Inject constructor(private val service: EmoveService): 
         return request(service.getVehicleInfo(order_by_field))
     }
 
-//    fun updateInfoex(body: InfoExBody): BaseResponse<String>? {
-//        return request(service.updateInfoEx(body))
-//    }
+    fun updateVehicle(body: Int): BaseResponse<String>? {
+        return request(service.updateVehicleInfo(body))
+    }
 }
