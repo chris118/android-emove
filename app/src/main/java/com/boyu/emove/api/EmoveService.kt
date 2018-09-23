@@ -4,7 +4,9 @@ import com.boyu.emove.Infoex.entity.InfoExBody
 import com.boyu.emove.login.entity.LoginResponse
 import com.boyu.emove.goods.entity.CartGoodBody
 import com.boyu.emove.info.entity.Info
-import com.boyu.emove.vehicle.entity.VehicleInfo
+import com.boyu.emove.order.entity.Order
+import com.boyu.emove.order.entity.OrderSave
+import com.boyu.emove.orderlist.entity.OrderList
 import retrofit2.Call
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -37,4 +39,10 @@ class EmoveService @Inject constructor(retrofit: Retrofit): ServiceApi {
     override fun getVehicleInfo(order_by_field: String) = serviceApi.getVehicleInfo(order_by_field)
 
     override fun updateVehicleInfo(body: Int): Call<BaseResponse<String>> = serviceApi.updateVehicleInfo(body)
+
+    override fun getOrder(): Call<BaseResponse<Order>> = serviceApi.getOrder()
+
+    override fun saveOrder(): Call<BaseResponse<OrderSave>> = serviceApi.saveOrder()
+
+    override fun getOrderList(page: Int, order_status: String): Call<BaseResponse<List<OrderList>>> = serviceApi.getOrderList(page, order_status)
 }

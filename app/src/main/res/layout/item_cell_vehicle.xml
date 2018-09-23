@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentTop="true"
-            android:background="@color/textColor"
+            android:background="@color/CDCDCD"
             android:orientation="horizontal"></LinearLayout>
 
         <RelativeLayout
@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@+id/ll_vehicle_kanjia"
-            android:background="@color/textColor"
+            android:background="@color/CDCDCD"
             android:orientation="vertical"></LinearLayout>
     </RelativeLayout>
 

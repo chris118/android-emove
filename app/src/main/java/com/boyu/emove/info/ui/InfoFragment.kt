@@ -1,10 +1,12 @@
 package com.boyu.emove.info.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -20,6 +22,11 @@ import com.boyu.emove.info.entity.Movein
 import com.boyu.emove.info.entity.Moveout
 import com.boyu.emove.info.viewmodel.InfoViewModel
 import kotlinx.android.synthetic.main.fragment_info.*
+import com.baidu.mapsdkplatform.comapi.map.v
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
+import com.boyu.emove.utils.KeyboardktUtils
 
 
 class InfoFragment : BaseNaviFragment() {
@@ -52,6 +59,14 @@ class InfoFragment : BaseNaviFragment() {
                 if(it.code == 0){
                     movein = it.result.movein
                     moveout = it.result.moveout
+
+                    //fix bug
+                    if(movein.floor == 0){
+                        movein.floor = 1
+                    }
+                    if(moveout.floor == 0){
+                        moveout.floor = 1
+                    }
                     this@InfoFragment.refreshData()
                 }
             })
@@ -113,13 +128,15 @@ class InfoFragment : BaseNaviFragment() {
             tv_out_elevator.text = "无"
             ll_out_floor.visibility = VISIBLE
         }
-        tv_out_floor.text = moveout.floor.toString()
+        tv_out_floor.text = floorsOptions[moveout.floor - 1]
         if (moveout.is_handling == 1){
             tv_out_assemble.text = "需要"
         }else {
             tv_out_assemble.text = "不需要"
         }
-        tv_out_distance.text = moveout.distance_meter.toString().toEditable()
+        if ( moveout.distance_meter > 0){
+            tv_out_distance.text = moveout.distance_meter.toString().toEditable()
+        }
 
         //in
         tv_in_address.text = movein.address
@@ -130,35 +147,50 @@ class InfoFragment : BaseNaviFragment() {
             tv_in_elevator.text = "无"
             ll_in_floor.visibility = VISIBLE
         }
-        tv_in_floor.text = movein.floor.toString()
+        tv_in_floor.text = floorsOptions[movein.floor - 1]
         if (movein.is_handling == 1){
             tv_in_assemble.text = "需要"
         }else {
             tv_in_assemble.text = "不需要"
         }
-        tv_in_distance.text = movein.distance_meter.toString().toEditable()
+        if( movein.distance_meter > 0){
+            tv_in_distance.text = movein.distance_meter.toString().toEditable()
+        }
     }
 
     private fun initializeView() {
+        ll_c_info.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
+        }
 
         //搬出
-        tv_out_address.setOnClickListener { _ ->
+        tv_out_address.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             address_type = 0
             val intent = Intent(activity, AddressActivity::class.java)
             startActivityForResult(intent, 10000)
         }
-        ll_out_elevator.setOnClickListener { _ ->
+        ll_out_elevator.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             outElevatorPicker?.show()
         }
-        ll_out_floor.setOnClickListener { _ ->
+        ll_out_floor.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             outFloorPicker?.show()
         }
-        ll_out_assemble.setOnClickListener { _ ->
+        ll_out_assemble.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             outAssemblePicker?.show()
         }
         tv_out_distance.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                moveout.distance_meter = p0.toString().toInt()
+                if(p0.toString().length > 0){
+                    try {
+                        moveout.distance_meter = p0.toString().toInt()
+                    }catch (e: Exception){
+
+                    }
+                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -169,24 +201,32 @@ class InfoFragment : BaseNaviFragment() {
         })
 
         //搬入
-        tv_in_address.setOnClickListener { _ ->
+        tv_in_address.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             address_type = 1
             val intent = Intent(activity, AddressActivity::class.java)
             startActivityForResult(intent, 10000)
         }
-        ll_in_elevator.setOnClickListener { _ ->
+        ll_in_elevator.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             inElevatorPicker?.show()
         }
-        ll_in_floor.setOnClickListener { _ ->
+        ll_in_floor.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             inFloorPicker?.show()
         }
-        ll_in_assemble.setOnClickListener { _ ->
+        ll_in_assemble.setOnClickListener {
+            KeyboardktUtils.hideKeyboard(it)
             inAssemblePicker?.show()
         }
         tv_in_distance.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 if(p0.toString().length > 0){
-                    movein.distance_meter = p0.toString().toInt()
+                    try {
+                        movein.distance_meter = p0.toString().toInt()
+                    }catch (e: Exception){
+
+                    }
                 }
             }
 
@@ -216,6 +256,8 @@ class InfoFragment : BaseNaviFragment() {
         outFloorPicker = OptionsPickerView.Builder(activity,
                 OnOptionsSelectListener{ option1 : Int, option2 : Int, option3 : Int, v: View? ->
                     moveout.floor = option1 + 1
+                    tv_out_floor.text = floorsOptions[moveout.floor - 1]
+
                 }).build() as OptionsPickerView<String>
         outFloorPicker.setPicker(floorsOptions.toMutableList())
 
@@ -251,6 +293,7 @@ class InfoFragment : BaseNaviFragment() {
         inFloorPicker = OptionsPickerView.Builder(activity,
                 OnOptionsSelectListener{ option1 : Int, option2 : Int, option3 : Int, v: View? ->
                     movein.floor = option1 + 1
+                    tv_in_floor.text = floorsOptions[movein.floor - 1]
                 }).build() as OptionsPickerView<String>
         inFloorPicker.setPicker(floorsOptions.toMutableList())
 
@@ -259,8 +302,10 @@ class InfoFragment : BaseNaviFragment() {
                 OnOptionsSelectListener{ option1 : Int, option2 : Int, option3 : Int, v: View? ->
                     if (option1 == 0){
                         movein.is_handling = 1
+                        tv_in_assemble.text = "需要"
                     }else {
                         movein.is_handling = 0
+                        tv_in_assemble.text = "不需要"
                     }
                 }).build() as OptionsPickerView<String>
         inAssemblePicker.setPicker(assembleOptions.toMutableList())

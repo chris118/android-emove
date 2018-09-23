@@ -12,6 +12,7 @@
         android:layout_alignParentTop="true">
 
         <LinearLayout
+            android:id="@+id/ll_c_infoex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -57,7 +58,6 @@
                     android:layout_toStartOf="@+id/iv_infoex_arrow1"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="有"
                     android:textColor="@android:color/black" />
 
                 <ImageView
@@ -104,7 +104,6 @@
                     android:layout_toStartOf="@+id/iv_infoex_arrow2"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="有"
                     android:textColor="@android:color/black" />
 
                 <ImageView
@@ -231,7 +230,6 @@
                     android:paddingTop="5dp"
                     android:scrollHorizontally="false"
                     android:singleLine="false"
-                    android:text="123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
             </RelativeLayout>

@@ -72,18 +72,26 @@ class ApplicationModule(private val application: AndroidApplication) {
             var responseString = response.body()?.string()
             val mediaType = response.body()?.contentType()
 
-            var baseResponse = Gson().fromJson(responseString, BaseResponse2::class.java)
-            if (baseResponse.code == 6004){
-                token = ""
-                uid = ""
-                var intent = Intent(application, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                application.startActivity(intent)
+            try {
+                var baseResponse = Gson().fromJson(responseString, BaseResponse2::class.java)
+                if (baseResponse.code == 6004){
+                    token = ""
+                    uid = ""
+                    var intent = Intent(application, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    application.startActivity(intent)
+                }
+
+                val responseBody = ResponseBody.create(mediaType, responseString)
+
+                return response.newBuilder().body(responseBody).build()
+
+            }catch (e: Exception){
+                val responseBody = ResponseBody.create(mediaType, "{code: -1, msg: \"未知错误\", result: \"\"}")
+
+                return response.newBuilder().body(responseBody).build()
             }
 
-            val responseBody = ResponseBody.create(mediaType, responseString)
-
-            return response.newBuilder().body(responseBody).build()
         }
 
     }

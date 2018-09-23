@@ -18,6 +18,7 @@ import com.boyu.emove.vehicle.viewmodel.VehicleViewModel
 import kotlinx.android.synthetic.main.fragment_goods.*
 import kotlinx.android.synthetic.main.fragment_info_ex.*
 import kotlinx.android.synthetic.main.fragment_vehicle.*
+import kotlinx.android.synthetic.main.item_cell_vehicle.*
 import javax.inject.Inject
 
 
@@ -86,10 +87,10 @@ class VehicleFragment : BaseNaviFragment() {
             orderPicker?.show()
         }
 
-        // invoice picker
         orderPicker = OptionsPickerView.Builder(activity,
                 OptionsPickerView.OnOptionsSelectListener { option1: Int, option2: Int, option3: Int, v: View? ->
                     selectedOrderValue = orderValues[option1]
+                    tv_vehicle_order.text = orderOptions[option1] + " 三"
                     loadData()
                 }).build() as OptionsPickerView<String>
         orderPicker?.setPicker(orderOptions.toMutableList())
@@ -98,5 +99,4 @@ class VehicleFragment : BaseNaviFragment() {
     private fun loadData() {
         viewModel?.getVehicle(selectedOrderValue)
     }
-
 }

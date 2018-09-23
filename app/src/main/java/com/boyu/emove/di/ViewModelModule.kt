@@ -23,6 +23,7 @@ import com.boyu.emove.login.viewmodel.LoginViewModel
 import com.boyu.emove.goods.viewmodel.GoodsViewModel
 import com.boyu.emove.info.viewmodel.InfoViewModel
 import com.boyu.emove.order.viewmodel.OrderViewModel
+import com.boyu.emove.orderlist.viewmodel.OrderListViewModel
 import com.boyu.emove.vehicle.viewmodel.VehicleViewModel
 import dagger.Binds
 import dagger.Module
@@ -62,4 +63,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(OrderViewModel::class)
     abstract fun bindsOrderViewModel(orderViewModel: OrderViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderListViewModel::class)
+    abstract fun bindsOrderListViewModel(orderListViewModel: OrderListViewModel): ViewModel
 }

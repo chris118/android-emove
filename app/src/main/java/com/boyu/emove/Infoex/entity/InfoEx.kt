@@ -2,8 +2,8 @@ package com.boyu.emove.Infoex.entity
 
 data class InfoEx(
     val time_slot: List<TimeSlot>,
-    val cart_time: CartTime,
-    val cart_contacts: CartContacts
+    var cart_time: CartTime,
+    var cart_contacts: CartContacts
 )
 
 data class CartTime(

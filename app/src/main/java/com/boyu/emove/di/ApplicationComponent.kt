@@ -6,8 +6,8 @@ import com.boyu.emove.login.ui.LoginActivity
 import com.boyu.emove.goods.ui.GoodsFragment
 import com.boyu.emove.info.ui.AddressActivity
 import com.boyu.emove.info.ui.InfoFragment
-import com.boyu.emove.order.OrderFragment
-import com.boyu.emove.orderlist.OrderListFragment
+import com.boyu.emove.order.ui.OrderFragment
+import com.boyu.emove.orderlist.ui.OrderListFragment
 import com.boyu.emove.vehicle.ui.VehicleFragment
 import dagger.Component
 import javax.inject.Singleton

@@ -4,12 +4,13 @@
     <color name="colorPrimaryDark">#0f8ee9</color>
     <color name="colorAccent">#0f8ee9</color>
     <color name="themeColor">#0f8ee9</color>
-    <color name="textColor">#CDCDCD</color>
+    <color name="textColor">#6E6E6E</color>
     <color name="bgColor">#F5F5F5</color>
     <color name="whiteColor">#ffffff</color>
     <color name="redColor">#ff0004</color>
     <color name="orangeColor">#e28401</color>
     <color name="lightGreyColor">#e4e3e2</color>
     <color name="greyColor">#949494</color>
+    <color name="CDCDCD">#CDCDCD</color>
 
 </resources>

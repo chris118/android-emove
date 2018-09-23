@@ -2,12 +2,461 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.boyu.emove.order.OrderFragment">
+    tools:context="com.boyu.emove.order.ui.OrderFragment"
+    android:orientation="horizontal">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="order" />
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@color/themeColor"
+                android:gravity="center"
+                android:text="若订单信息有误或有疑问\n可致电e搬家客服热线400-400-6668寻求帮助"
+                android:textColor="@color/whiteColor" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="基础信息"
+                android:textColor="@color/textColor" />
+
+            <RelativeLayout
+                android:id="@+id/rl_order_contact"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_contact_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="联系人:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_contact_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_contact_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_order_contact_splitter"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/textColor"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_order_mobile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/ll_order_contact_splitter"
+                    android:gravity="center"
+                    android:text="联系电话:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_mobile_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_mobile_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_time"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="搬家时间:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_time_title"
+                    android:gravity="center"
+                    android:textColor="@color/themeColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_out"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_out_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="搬出地址:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_out_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_out_title"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_in"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_in_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="搬入地址:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_in_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_in_title"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_invoice"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_invoice_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="发票需求:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_invoice_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_invoice_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_note"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_note_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="top"
+                    android:paddingTop="10dp"
+                    android:text="客户备注:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_note_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/tv_order_note_title"
+                    android:gravity="top"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="车队信息"
+                android:textColor="@color/textColor" />
+
+            <RelativeLayout
+                android:id="@+id/rl_order_fleet"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="车队名称:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_fleet_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_order_fleet_splitter"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/textColor"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_mobile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/ll_order_fleet_splitter"
+                    android:gravity="center"
+                    android:text="联系电话:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_mobile_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_fleet_mobile_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_order_fleet_address"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:text="车队地址:"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_fleet_address_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/tv_order_fleet_address_title"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="基础项目收费"
+                android:textColor="@color/textColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/baseInfoRecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="贵重物品收费"
+                android:textColor="@color/textColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goodsInfoRecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:text="总计"
+                android:textColor="@color/textColor" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/totalInfoRecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_order_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@color/bgColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_order_go_list"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_button"
+            android:text="返回订单列表"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_order_kanjia"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_orange_button"
+            android:text="进入砍价页面"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 </FrameLayout>

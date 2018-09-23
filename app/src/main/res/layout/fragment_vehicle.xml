@@ -33,7 +33,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:layout_toStartOf="@+id/tv_vehicle_order"
-            android:background="@color/textColor"
+            android:background="@color/CDCDCD"
             android:orientation="horizontal"></LinearLayout>
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView

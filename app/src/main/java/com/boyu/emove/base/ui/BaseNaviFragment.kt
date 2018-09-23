@@ -27,8 +27,12 @@ abstract class BaseNaviFragment : BaseFragment() {
         activity?.bnv_bottom_navigation?.visibility = View.GONE
     }
 
+    open fun menuItem(): Int {
+        return R.menu.menu_item_next
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_item_next, menu)
+        inflater?.inflate(menuItem(), menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
