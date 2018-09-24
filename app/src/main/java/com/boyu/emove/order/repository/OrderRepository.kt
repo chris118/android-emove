@@ -19,4 +19,8 @@ class OrderRepository @Inject constructor(private val service: EmoveService): Ba
     fun saveOrder(): BaseResponse<OrderSave>? {
         return request(service.saveOrder())
     }
+
+    fun getOrderWithId(order_id: Int): BaseResponse<Order>? {
+        return request(service.getOrderWithId(order_id))
+    }
 }

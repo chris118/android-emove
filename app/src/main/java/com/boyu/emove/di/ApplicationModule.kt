@@ -87,7 +87,7 @@ class ApplicationModule(private val application: AndroidApplication) {
                 return response.newBuilder().body(responseBody).build()
 
             }catch (e: Exception){
-                val responseBody = ResponseBody.create(mediaType, "{code: -1, msg: \"未知错误\", result: \"\"}")
+                val responseBody = ResponseBody.create(mediaType, "{code: -1, msg: \"未知错误\", result: null}")
 
                 return response.newBuilder().body(responseBody).build()
             }

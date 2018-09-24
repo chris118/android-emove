@@ -13,11 +13,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
     private val TAG = HomeFragment::class.java.simpleName
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -27,17 +22,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        viewModel.counter.observe(this, Observer { counter ->
-            if (counter != null) {
-                Log.d(TAG, counter.toString())
-                tv_counter.text = counter.toString()
-            }
-        })
-
-        btn_increment.setOnClickListener {
-            viewModel.increment()
-        }
     }
 
 }

@@ -16,6 +16,7 @@ import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.extension.createViewModel
 import com.boyu.emove.extension.toEditable
+import com.boyu.emove.extension.toast
 import com.boyu.emove.utils.KeyboardktUtils
 import kotlinx.android.synthetic.main.fragment_info.*
 import kotlinx.android.synthetic.main.fragment_info_ex.*
@@ -93,12 +94,16 @@ class InfoExFragment : BaseNaviFragment() {
                         infoEx?.cart_time = CartTime(year.toString(), month.toString(), day.toString(), default_slot_id)
                     }
                     updateUI()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
 
             this.updateInfoExResponse.observe(this@InfoExFragment, Observer {
                 if(it.code == 0){
                     goNext()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
         }

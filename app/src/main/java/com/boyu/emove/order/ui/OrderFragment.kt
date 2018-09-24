@@ -13,12 +13,15 @@ import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.base.ui.DividerItemDecoration
 import com.boyu.emove.extension.createViewModel
+import com.boyu.emove.extension.toast
+import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.order.entity.Order
 import com.boyu.emove.order.ui.adapter.BaseInfoAdapter
 import com.boyu.emove.order.ui.adapter.GoodsInfoAdapter
 import com.boyu.emove.order.ui.adapter.TotalInfoAdapter
 import com.boyu.emove.order.viewmodel.OrderViewModel
 import com.boyu.emove.vehicle.ui.VehicleFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_order.*
 import javax.inject.Inject
 
@@ -47,7 +50,7 @@ class OrderFragment : BaseNaviFragment() {
     }
 
     override fun getTargetLayoutId(): Int {
-        return R.id.action_orderFragment_to_orderListFragment2
+        return R.id.action_orderListFragment2_to_orderFragment2
     }
 
     override fun menuItem(): Int {
@@ -71,6 +74,8 @@ class OrderFragment : BaseNaviFragment() {
                 if(it.code == 0){
                     order = it.result
                     updateUI()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
 
@@ -80,6 +85,8 @@ class OrderFragment : BaseNaviFragment() {
                     activity?.invalidateOptionsMenu()
 
                     ll_order_bottom.visibility = View.VISIBLE
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
         }
@@ -112,7 +119,10 @@ class OrderFragment : BaseNaviFragment() {
         totalInfoRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
 
         btn_order_go_list.setOnClickListener {
-            goNext()
+            (activity as? MainActivity)?.showActionBar()
+            activity?.let {
+                it.bnv_bottom_navigation.selectedItemId = R.id.orderListFragment
+            }
         }
 
         btn_order_kanjia.setOnClickListener{
@@ -121,7 +131,17 @@ class OrderFragment : BaseNaviFragment() {
     }
 
     private fun loadData() {
-        viewModel?.getOrder()
+        order_id = arguments?.getInt("orderId") ?: 0
+
+        arguments?.let {
+            val safeArgs = OrderFragmentArgs.fromBundle(it)
+            order_id = safeArgs.orderId
+        }
+        if(order_id > 0 ){
+            viewModel?.getOrderWithId(order_id)
+        }else {
+            viewModel?.getOrder()
+        }
     }
 
     private fun updateUI() {

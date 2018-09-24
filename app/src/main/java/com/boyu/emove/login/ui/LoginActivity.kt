@@ -9,6 +9,7 @@ import com.boyu.emove.login.viewmodel.LoginViewModel
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
 import com.boyu.emove.extension.createViewModel
+import com.boyu.emove.extension.toast
 import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.utils.SharedPreferencesUtil
 import kotlinx.android.synthetic.main.activity_login.*
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class LoginActivity : BaseActivity() {
     private val TAG = LoginActivity::class.java.simpleName
-    private var counter = 5
+    private var counter = 60
     private var token by SharedPreferencesUtil(this@LoginActivity,"token","")
     private var uid by SharedPreferencesUtil(this@LoginActivity,"uid","")
 
@@ -31,7 +32,9 @@ class LoginActivity : BaseActivity() {
         viewModel = createViewModel(viewModelFactory) {
             this.sendVerifyCodeResponse.observe(this@LoginActivity, Observer {
                 if (it.code != 0) {
-                    Toast.makeText(this@LoginActivity, it.msg, Toast.LENGTH_LONG).show()
+                    it.msg.toast(this@LoginActivity)
+                }else {
+                    it.msg.toast(this@LoginActivity)
                 }
             })
 
@@ -42,7 +45,7 @@ class LoginActivity : BaseActivity() {
                     uid = it.result.uid.toString()
                     startActivity<MainActivity>()
                 }else {
-                    Toast.makeText(this@LoginActivity, it.msg, Toast.LENGTH_LONG).show()
+                    it.msg.toast(this@LoginActivity)
                 }
             })
         }
@@ -56,16 +59,19 @@ class LoginActivity : BaseActivity() {
             val executor = Executors.newScheduledThreadPool(1)
             executor.scheduleAtFixedRate({
                 counter--
-                tv_code.text = counter.toString()
-                if(counter == 0){
-                    tv_code.isEnabled = true
-                    executor.shutdown()
-                    counter = 5
-                    tv_code.text = "获取验证码"
+                runOnUiThread {
+                    tv_code.text = counter.toString()
+                    if(counter == 0){
+                        tv_code.isEnabled = true
+                        executor.shutdown()
+                        counter = 60
+                        tv_code.text = "获取验证码"
+                    }
                 }
+
             }, 0, 1, TimeUnit.SECONDS)
 
-            viewModel?.sendVerifyCode("15618516930")
+            viewModel?.sendVerifyCode(mobile.text.toString())
         }
 
         btn_login.setOnClickListener {

@@ -27,6 +27,10 @@ class OrderListAdapter
         notifyDataSetChanged()
     }
 
+    internal var kanjiaClickListener: (orderId: Int) -> Unit = {_ -> }
+    internal var orderClickListener: (orderId: Int) -> Unit = {_ -> }
+
+
     override fun getItemCount(): Int {
         return data.size
     }
@@ -44,6 +48,14 @@ class OrderListAdapter
         when(data[position].order_status) {
             "wait" -> holder.tvStatus?.text = "未完成"
             "finish" -> holder.tvStatus?.text = "完成"
+        }
+
+        holder.btnDetail?.setOnClickListener {
+            orderClickListener(data[position].order_id)
+        }
+
+        holder.btnKanjia?.setOnClickListener {
+            kanjiaClickListener(data[position].order_id)
         }
     }
 

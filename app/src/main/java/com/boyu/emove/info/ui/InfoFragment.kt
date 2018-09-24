@@ -25,7 +25,9 @@ import kotlinx.android.synthetic.main.fragment_info.*
 import com.baidu.mapsdkplatform.comapi.map.v
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import com.boyu.emove.extension.toast
 import com.boyu.emove.utils.KeyboardktUtils
 
 
@@ -41,8 +43,8 @@ class InfoFragment : BaseNaviFragment() {
     private val assembleOptions = arrayOf("需要", "不需要")
 
     private var viewModel: InfoViewModel? = null
-    private lateinit var moveout: Moveout
-    private lateinit var movein: Movein
+    private  var moveout: Moveout = Moveout.empty()
+    private  var movein: Movein = Movein.empty()
     private lateinit var outElevatorPicker: OptionsPickerView<String>
     private lateinit var outFloorPicker: OptionsPickerView<String>
     private lateinit var outAssemblePicker: OptionsPickerView<String>
@@ -61,6 +63,14 @@ class InfoFragment : BaseNaviFragment() {
                     moveout = it.result.moveout
 
                     //fix bug
+                    if(moveout.address == null){
+                        moveout = Moveout.empty()
+                    }
+                    if(movein.address == null){
+                        movein = Movein.empty()
+                    }
+
+                    //fix bug
                     if(movein.floor == 0){
                         movein.floor = 1
                     }
@@ -68,12 +78,16 @@ class InfoFragment : BaseNaviFragment() {
                         moveout.floor = 1
                     }
                     this@InfoFragment.refreshData()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
 
             this.updateInfoResponse.observe(this@InfoFragment, Observer {
                 if (it.code == 0){
                     goNext()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
         }

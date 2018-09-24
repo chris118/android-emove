@@ -7,6 +7,7 @@ import com.boyu.emove.base.interactor.BaseInteractor
 import com.boyu.emove.order.entity.Order
 import com.boyu.emove.order.entity.OrderSave
 import com.boyu.emove.order.interactor.GetOrderInteractor
+import com.boyu.emove.order.interactor.GetOrderWithIDInteractor
 import com.boyu.emove.order.interactor.SaveOrderInteractor
 import javax.inject.Inject
 
@@ -22,6 +23,10 @@ class OrderViewModel @Inject constructor() : ViewModel() {
     var saveOrderResponse: MutableLiveData<BaseResponse<OrderSave>> = MutableLiveData()
 
 
+    @Inject
+    lateinit var getOrderWithIDInteractor: GetOrderWithIDInteractor
+
+
     fun getOrder() {
         getOrderInteractor(BaseInteractor.None()) {
             (this@OrderViewModel).getOrderResponse.value = it
@@ -33,4 +38,11 @@ class OrderViewModel @Inject constructor() : ViewModel() {
             (this@OrderViewModel).saveOrderResponse.value = it
         }
     }
+
+    fun getOrderWithId(order_id: Int) {
+        getOrderWithIDInteractor(order_id) {
+            (this@OrderViewModel).getOrderResponse.value = it
+        }
+    }
+
 }

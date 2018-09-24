@@ -26,13 +26,17 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
         }
     }
 
@@ -50,32 +54,48 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     // support
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
     // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+
     // kotlinx-coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
     // dagger
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
+
     // retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
     // tools
     implementation 'com.contrarywind:Android-PickerView:3.2.7'
+
     //baidu map
     implementation files('libs/BaiduLBS_Android.jar')
-    //
+
+    //rate bar
     implementation 'com.iarcuschin:simpleratingbar:0.1.5'
 
+    // permission
+    implementation 'com.yanzhenjie:permission:2.0.0-rc12'
 
+    //bugly
+    implementation 'com.tencent.bugly:crashreport:2.2.2'
+    implementation 'com.tencent.bugly:nativecrashreport:3.0'
 }

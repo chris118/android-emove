@@ -12,6 +12,7 @@ import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.base.ui.DividerItemDecoration
 import com.boyu.emove.extension.createViewModel
+import com.boyu.emove.extension.toast
 import com.boyu.emove.goods.ui.adapter.CategoryAdapter
 import com.boyu.emove.vehicle.ui.adapter.VehicleAdapter
 import com.boyu.emove.vehicle.viewmodel.VehicleViewModel
@@ -53,12 +54,16 @@ class VehicleFragment : BaseNaviFragment() {
                     Log.d(TAG, "success getVehicleResponse")
                     vehicleAdapter.selectedFleet = it.result.selected_fleet_id
                     vehicleAdapter.data = it.result.usable_fleet
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
 
             this.updateVehicleResponse.observe(this@VehicleFragment, Observer {
                 if (it.code == 0){
                     goNext()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
         }

@@ -74,12 +74,16 @@ class GoodsFragment : BaseNaviFragment() {
                         updateNumbers()
                         calculateHeightOfSubCategory()
                     }
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
 
             this.updateGoodsResponse.observe(this@GoodsFragment, Observer {
                 if(it.code == 0) {
                     loadData()
+                }else {
+                    it.msg.toast(activity!!)
                 }
             })
         }

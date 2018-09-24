@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -54,8 +55,7 @@
             android:layout_alignTop="@+id/rate_view"
             android:layout_alignParentEnd="false"
             android:layout_marginLeft="8dp"
-            android:layout_toEndOf="@+id/rate_view"
-            android:text="TextView" />
+            android:layout_toEndOf="@+id/rate_view" />
 
         <TextView
             android:id="@+id/tv_vehicle_address"
@@ -68,8 +68,7 @@
             android:layout_alignParentBottom="false"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView" />
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:id="@+id/tv_vehicle_left"
@@ -78,8 +77,7 @@
             android:layout_alignTop="@+id/tv_vehicle_address"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="false"
-            android:layout_marginEnd="10dp"
-            android:text="TextView" />
+            android:layout_marginEnd="10dp" />
 
         <CheckBox
             android:id="@+id/cb_vehicle"
@@ -130,13 +128,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toEndOf="@+id/iv_vehicle_icon"
-                android:text="TextView" />
+                android:layout_toEndOf="@+id/iv_vehicle_icon" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="10dp"
             android:layout_below="@+id/ll_vehicle_kanjia"
             android:background="@color/CDCDCD"
             android:orientation="vertical"></LinearLayout>

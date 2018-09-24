@@ -25,8 +25,10 @@ interface ServiceApi {
         private const val INFOEX = "/cart/time"
         private const val VEHICLE = "/cart/fleet"
         private const val ORDER = "/cart/finish"
+        private const val GETORDER = "/get/order"
         private const val ORDERSAVE = "/order/save"
         private const val ORDERLIST = "/get/orders"
+
     }
 
     @GET(SEND_VERIFY_CODE)
@@ -69,5 +71,8 @@ interface ServiceApi {
 
     @GET(ORDERLIST)
     fun getOrderList(@Query("page") page: Int, @Query("order_status") order_status: String): Call<BaseResponse<List<OrderList>>>
+
+    @GET(GETORDER)
+    fun getOrderWithId(@Query("order_id")order_id: Int): Call<BaseResponse<Order>>
 
 }

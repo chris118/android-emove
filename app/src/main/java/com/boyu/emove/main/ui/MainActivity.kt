@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.boyu.emove.login.ui.LoginActivity
 import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseActivity
+import com.boyu.emove.login.ui.LoginActivity
 import com.boyu.emove.utils.SharedPreferencesUtil
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity() {
     private val TAG = MainActivity::class.java.simpleName
@@ -19,9 +22,16 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.setupNavigationController()
-
+        requestPermission()
+        setupNavigationController()
         checkToken()
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+        this.bnv_bottom_navigation.selectedItemId = R.id.homeFragment
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -31,6 +41,23 @@ class MainActivity : BaseActivity() {
     override fun onBackPressed() {
         bnv_bottom_navigation.visibility = View.VISIBLE
         super.onBackPressed()
+    }
+
+    fun showActionBar(){
+        supportActionBar?.show()
+    }
+
+    private fun requestPermission() {
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.CALL_PHONE)
+                .onGranted {
+
+                }
+                .onDenied {
+
+                }
+                .start()
     }
 
     private fun checkToken() {
@@ -62,7 +89,7 @@ class MainActivity : BaseActivity() {
                     supportActionBar?.show()
                 }
                 com.boyu.emove.R.id.orderListFragment -> {
-                    supportActionBar?.hide()
+                    supportActionBar?.show()
                 }
             }
             return@setOnNavigationItemSelectedListener true
