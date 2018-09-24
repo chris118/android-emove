@@ -87,7 +87,7 @@ class InfoExFragment : BaseNaviFragment() {
 
                         calendar.time = Date()
                         val year = calendar.get(Calendar.YEAR)
-                        val month = calendar.get(Calendar.MONTH)
+                        val month = calendar.get(Calendar.MONTH) + 1
                         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                         val default_slot_id = infoEx?.time_slot!![0].time_slot_id.toString()
@@ -151,7 +151,7 @@ class InfoExFragment : BaseNaviFragment() {
                     val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                     cart_time.year = year.toString()
-                    cart_time.month = month.toString()
+                    cart_time.month = (month + 1).toString()
                     cart_time.day = day.toString()
 
                     tv_out_time.text = cart_time.year + "-" + cart_time.month + "-" + cart_time.day

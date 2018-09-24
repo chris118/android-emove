@@ -1,5 +1,6 @@
 package com.boyu.emove.orderlist.ui
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -71,6 +72,8 @@ class OrderListFragment : BaseNaviFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         initializeView()
         loadData()

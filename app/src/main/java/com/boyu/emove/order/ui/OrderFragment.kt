@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,7 +63,6 @@ class OrderFragment : BaseNaviFragment() {
         super.onPrepareOptionsMenu(menu)
         if(order_id > 0){
             menu?.getItem(0)?.isVisible = false
-//            menu?.findItem(R.menu.menu_item_submit)?.isVisible = false
         }
     }
 
@@ -82,8 +83,14 @@ class OrderFragment : BaseNaviFragment() {
             this.saveOrderResponse.observe(this@OrderFragment, Observer {
                 if(it.code == 0){
                     order_id = it.result.order_id
+
+                    //隐藏提交
                     activity?.invalidateOptionsMenu()
 
+                    //隐藏返回
+                    (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+                    //显示底部导航2个按钮
                     ll_order_bottom.visibility = View.VISIBLE
                 }else {
                     it.msg.toast(activity!!)
@@ -101,8 +108,17 @@ class OrderFragment : BaseNaviFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        arguments?.let {
+            val safeArgs = OrderFragmentArgs.fromBundle(it)
+            order_id = safeArgs.orderId
+        }
+
         initializeView()
         loadData()
+
+
+//        val appCompatActivity  = activity as? AppCompatActivity
+//        appCompatActivity?.supportActionBar?.show()
     }
 
     private fun initializeView() {
@@ -122,6 +138,9 @@ class OrderFragment : BaseNaviFragment() {
             (activity as? MainActivity)?.showActionBar()
             activity?.let {
                 it.bnv_bottom_navigation.selectedItemId = R.id.orderListFragment
+
+                //显示底部导航
+                it.bnv_bottom_navigation?.visibility = View.VISIBLE
             }
         }
 
@@ -131,12 +150,6 @@ class OrderFragment : BaseNaviFragment() {
     }
 
     private fun loadData() {
-        order_id = arguments?.getInt("orderId") ?: 0
-
-        arguments?.let {
-            val safeArgs = OrderFragmentArgs.fromBundle(it)
-            order_id = safeArgs.orderId
-        }
         if(order_id > 0 ){
             viewModel?.getOrderWithId(order_id)
         }else {

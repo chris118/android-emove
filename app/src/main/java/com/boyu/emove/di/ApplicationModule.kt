@@ -36,10 +36,12 @@ class ApplicationModule(private val application: AndroidApplication) {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-            val requestInterceptor = RequestInterceptor(application)
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
-            okHttpClientBuilder.addInterceptor(requestInterceptor)
         }
+
+        val requestInterceptor = RequestInterceptor(application)
+        okHttpClientBuilder.addInterceptor(requestInterceptor)
+
         return okHttpClientBuilder.build()
     }
 

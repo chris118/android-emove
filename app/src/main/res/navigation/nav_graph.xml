@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/orderListFragment">
+    app:startDestination="@id/infoFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.boyu.emove.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" ></fragment>
 
 
 

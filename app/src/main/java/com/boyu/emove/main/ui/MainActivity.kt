@@ -82,9 +82,9 @@ class MainActivity : BaseActivity() {
                     || super.onOptionsItemSelected(item)
 
             when(item.itemId) {
-                com.boyu.emove.R.id.homeFragment -> {
-                    supportActionBar?.hide()
-                }
+//                com.boyu.emove.R.id.homeFragment -> {
+//                    supportActionBar?.hide()
+//                }
                 com.boyu.emove.R.id.infoFragment -> {
                     supportActionBar?.show()
                 }
