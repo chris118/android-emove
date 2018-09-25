@@ -93,7 +93,11 @@ class OrderListFragment : BaseNaviFragment() {
         }
 
         orderListAdapter.kanjiaClickListener = {
+            val action = OrderListFragmentDirections.ActionOrderListFragmentToKanjiaFragment()
+            action.setOrderId(it)
 
+            val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+            navigation.navigate(action)
         }
 
         tv_order_list.setOnClickListener {

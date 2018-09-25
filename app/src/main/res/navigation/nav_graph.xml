@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_orderListFragment_to_kanjiaFragment"
+            app:destination="@id/kanjiaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/orderFragment2"
@@ -101,5 +108,15 @@
         android:name="com.boyu.emove.order.ui.OrderFragment"
         android:label="订单"
         tools:layout="@layout/fragment_order" ></fragment>
+    <fragment
+        android:id="@+id/kanjiaFragment"
+        android:name="com.boyu.emove.kanjia.KanjiaFragment"
+        android:label="砍价"
+        tools:layout="@layout/fragment_kanjiaragment" >
+        <argument
+            android:name="orderId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -75,7 +75,7 @@ class OrderListAdapter
             tvIn = itemView.tv_orderlist_in
             tvTime = itemView.tv_orderlist_time_value
             tvStatus = itemView.tv_orderlist_status
-            btnKanjia = itemView.btn_order_kanjia
+            btnKanjia = itemView.btn_orderlist_kanjia
             btnDetail = itemView.btn_orderlist_order
         }
     }

@@ -55,7 +55,7 @@ class VehicleAdapter
         holder.tvComment?.text = "(" + data[position].evaluate_count.toString() + "次点评)"
         holder.tvAddress?.text = data[position].fleet_address + "\n距离您" + data[position].distance_kilometer + "米"
         holder.tvLeftCount?.text = "仅剩车次 " + data[position].remainder.toString()
-        holder.tvKanjia?.text = "参与砍价活动, 该车队最低可砍至" + data[position].discount + " 折"
+        holder.tvKanjia?.text = "参与砍价活动, 该车队最低可砍至" + data[position].discount/10 + " 折"
 
         holder.cbSelect?.isChecked = data[position].fleet_id == selectedFleet
 
