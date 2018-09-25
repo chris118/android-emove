@@ -47,4 +47,7 @@ class EmoveService @Inject constructor(retrofit: Retrofit): ServiceApi {
     override fun getOrderList(page: Int, order_status: String): Call<BaseResponse<List<OrderList>>> = serviceApi.getOrderList(page, order_status)
 
     override fun getOrderWithId(order_id: Int): Call<BaseResponse<Order>> = serviceApi.getOrderWithId(order_id)
+
+    override fun companySave(company_name: String, user_name: String, user_telephone: String, user_note: String): Call<BaseResponse<String>>
+            = serviceApi.companySave(company_name,user_name, user_telephone,user_note)
 }

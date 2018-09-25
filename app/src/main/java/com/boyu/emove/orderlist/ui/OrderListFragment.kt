@@ -21,6 +21,7 @@ import com.boyu.emove.extension.toast
 import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.orderlist.ui.adapter.OrderListAdapter
 import com.boyu.emove.orderlist.viewmodel.OrderListViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_order_list.*
 import org.jetbrains.anko.bundleOf
 import javax.inject.Inject
@@ -73,10 +74,15 @@ class OrderListFragment : BaseNaviFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
         initializeView()
         loadData()
+    }
+
+    override fun onResume() {
+        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
+
+        super.onResume()
     }
 
     private fun initializeView() {
@@ -85,6 +91,17 @@ class OrderListFragment : BaseNaviFragment() {
         orderlistRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
 
         orderListAdapter.orderClickListener = {
+            activity!!.bnv_bottom_navigation.visibility = View.GONE
+
+            val action = OrderListFragmentDirections.ActionOrderListFragment2ToOrderFragment2()
+            action.setOrderId(it)
+            val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+            navigation.navigate( action)
+
+        }
+
+        orderListAdapter.itemClickListener = {
+            activity!!.bnv_bottom_navigation.visibility = View.GONE
 
             val action = OrderListFragmentDirections.ActionOrderListFragment2ToOrderFragment2()
             action.setOrderId(it)
@@ -93,6 +110,8 @@ class OrderListFragment : BaseNaviFragment() {
         }
 
         orderListAdapter.kanjiaClickListener = {
+            activity!!.bnv_bottom_navigation.visibility = View.GONE
+
             val action = OrderListFragmentDirections.ActionOrderListFragmentToKanjiaFragment()
             action.setOrderId(it)
 

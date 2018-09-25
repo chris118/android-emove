@@ -51,19 +51,20 @@ class ApplicationModule(private val application: AndroidApplication) {
 
             var token by SharedPreferencesUtil(this@RequestInterceptor.application,"token","")
             var uid by SharedPreferencesUtil(this@RequestInterceptor.application,"uid","")
+            var banjia_type by SharedPreferencesUtil(this@RequestInterceptor.application,"banjia_type","1")
 
             var url: HttpUrl? = null
             if(token.length > 0) {
                  url = originalRequest.url().newBuilder()
                         .addQueryParameter("eappid","8102")
-                        .addQueryParameter("banjia_type", "1")
+                        .addQueryParameter("banjia_type", banjia_type)
                          .addQueryParameter("uid",uid)
                          .addQueryParameter("token",token)
                         .build()
             }else {
                 url = originalRequest.url().newBuilder()
                         .addQueryParameter("eappid","8102")
-                        .addQueryParameter("banjia_type", "1")
+                        .addQueryParameter("banjia_type", banjia_type)
                         .build()
             }
             originalRequest = originalRequest.newBuilder().url(url).build()

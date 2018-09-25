@@ -1,8 +1,10 @@
 package com.boyu.emove.main.ui
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.boyu.emove.R
@@ -22,6 +24,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+
         requestPermission()
         setupNavigationController()
         checkToken()
@@ -35,11 +40,17 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        bnv_bottom_navigation.visibility = View.VISIBLE
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
     }
     override fun onBackPressed() {
-        bnv_bottom_navigation.visibility = View.VISIBLE
+//        bnv_bottom_navigation.visibility = View.VISIBLE
+
+
+       val navi = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val destId = navi.currentDestination?.id ?: 0
+        if (destId == R.id.homeFragment || destId == R.id.infoFragment || destId == R.id.orderListFragment){
+           return
+        }
         super.onBackPressed()
     }
 
@@ -76,23 +87,26 @@ class MainActivity : BaseActivity() {
         NavigationUI.setupWithNavController(bnv_bottom_navigation, navController)
 
 
-        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
-            NavigationUI.onNavDestinationSelected(item,
-                    Navigation.findNavController(this, R.id.nav_host_fragment))
-                    || super.onOptionsItemSelected(item)
-
-            when(item.itemId) {
+//        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
+//            NavigationUI.onNavDestinationSelected(item,
+//                    Navigation.findNavController(this, R.id.nav_host_fragment))
+//                    || super.onOptionsItemSelected(item)
+//
+//            when(item.itemId) {
 //                com.boyu.emove.R.id.homeFragment -> {
-//                    supportActionBar?.hide()
+//                    supportActionBar?.show()
+//
+//                    //隐藏返回
+//                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
 //                }
-                com.boyu.emove.R.id.infoFragment -> {
-                    supportActionBar?.show()
-                }
-                com.boyu.emove.R.id.orderListFragment -> {
-                    supportActionBar?.show()
-                }
-            }
-            return@setOnNavigationItemSelectedListener true
-        }
+//                com.boyu.emove.R.id.infoFragment -> {
+//                    supportActionBar?.show()
+//                }
+//                com.boyu.emove.R.id.orderListFragment -> {
+//                    supportActionBar?.show()
+//                }
+//            }
+//            return@setOnNavigationItemSelectedListener true
+//        }
     }
 }

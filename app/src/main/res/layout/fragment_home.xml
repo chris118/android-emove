@@ -7,25 +7,23 @@
     android:background="@android:color/background_light"
     tools:context=".home.HomeFragment">
 
-    <com.google.android.material.tabs.TabLayout
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginBottom="70dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_img" />
+
+    <ImageView
+        android:id="@+id/iv_book"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/themeColor"
-        app:tabSelectedTextColor="@color/themeColor">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/yuyue" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Left" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Center" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Right" />
-    </com.google.android.material.tabs.TabLayout>
 </RelativeLayout>

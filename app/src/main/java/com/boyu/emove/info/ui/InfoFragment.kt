@@ -1,12 +1,13 @@
 package com.boyu.emove.info.ui
 
-import android.content.Context
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.view.MotionEvent
+import android.view.Menu
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -18,22 +19,21 @@ import com.boyu.emove.R
 import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.extension.createViewModel
 import com.boyu.emove.extension.toEditable
+import com.boyu.emove.extension.toast
 import com.boyu.emove.info.entity.Movein
 import com.boyu.emove.info.entity.Moveout
 import com.boyu.emove.info.viewmodel.InfoViewModel
-import kotlinx.android.synthetic.main.fragment_info.*
-import com.baidu.mapsdkplatform.comapi.map.v
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
-import com.boyu.emove.extension.toast
 import com.boyu.emove.utils.KeyboardktUtils
+import com.boyu.emove.utils.SharedPreferencesUtil
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_info.*
 
 
 class InfoFragment : BaseNaviFragment() {
 
     private val TAG = InfoFragment::class.java.simpleName
+    private var is_compay_banjia = false
 
     companion object {
         fun newInstance() = InfoFragment()
@@ -65,9 +65,13 @@ class InfoFragment : BaseNaviFragment() {
                     //fix bug
                     if(moveout.address == null){
                         moveout = Moveout.empty()
+                    }else {
+                        ll_out_more.visibility = View.VISIBLE
                     }
                     if(movein.address == null){
                         movein = Movein.empty()
+                    }else {
+                        ll_in_more.visibility = View.VISIBLE
                     }
 
                     //fix bug
@@ -90,6 +94,23 @@ class InfoFragment : BaseNaviFragment() {
                     it.msg.toast(activity!!)
                 }
             })
+
+            this.saveCompanyResponse.observe(this@InfoFragment, Observer {
+                if (it.code == 0){
+                    AlertDialog.Builder(activity!!)
+                            .setMessage("预约成功! 稍后将有我司专员与您联系.")
+                            .setTitle("")
+                            .setPositiveButton("确定") { _, _ ->
+                                tv_company_name.text = "".toEditable()
+                                tv_company_contact.text = "".toEditable()
+                                tv_company_mobile.text = "".toEditable()
+                            }
+                            .create()
+                            .show()
+                }else {
+                    it.msg.toast(activity!!)
+                }
+            })
         }
     }
 
@@ -101,6 +122,8 @@ class InfoFragment : BaseNaviFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        var banjia_type by SharedPreferencesUtil(activity!!,"banjia_type","1")
+        banjia_type = "1"
 
         initializeView()
         loadData()
@@ -113,12 +136,24 @@ class InfoFragment : BaseNaviFragment() {
                 moveout.address =  data?.getStringExtra("address_name") ?: ""
                 moveout.uid = data?.getStringExtra("address_uid") ?: ""
                 tv_out_address.text = moveout.address
+                ll_out_more.visibility = View.VISIBLE
             }else {
                 movein.address =  data?.getStringExtra("address_name") ?: ""
                 movein.uid = data?.getStringExtra("address_uid") ?: ""
                 tv_in_address.text = movein.address
+                ll_in_more.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun onResume() {
+        activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
+        super.onResume()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
+        menu?.getItem(0)?.isVisible = !is_compay_banjia
     }
 
     override fun getTargetLayoutId(): Int {
@@ -173,6 +208,48 @@ class InfoFragment : BaseNaviFragment() {
     }
 
     private fun initializeView() {
+        tl_tabs.addOnTabSelectedListener(object :
+                TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                if (tab.position == 0){
+                    ll_tab1_tab2.visibility = View.VISIBLE
+                    ll_tab3.visibility = View.GONE
+                    is_compay_banjia = false
+                    var banjia_type by SharedPreferencesUtil(activity!!,"banjia_type","1")
+                    banjia_type = "1"
+                    loadData()
+                }else if (tab.position == 1){
+                    ll_tab1_tab2.visibility = View.VISIBLE
+                    ll_tab3.visibility = View.GONE
+                    is_compay_banjia = false
+                    var banjia_type by SharedPreferencesUtil(activity!!,"banjia_type","1")
+                    banjia_type = "2"
+                    loadData()
+                }
+                else if (tab.position == 2) {
+                    ll_tab1_tab2.visibility = View.GONE
+                    ll_tab3.visibility = View.VISIBLE
+                    is_compay_banjia = true
+                }
+                activity?.invalidateOptionsMenu()
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+
+        })
+
+        //企业搬家
+        btn_company_book.setOnClickListener {
+            viewModel?.saveCompany(tv_company_name.text.toString(),
+                    tv_company_contact.text.toString(),
+                    tv_company_mobile.text.toString(), "")
+        }
+
         ll_c_info.setOnClickListener {
             KeyboardktUtils.hideKeyboard(it)
         }

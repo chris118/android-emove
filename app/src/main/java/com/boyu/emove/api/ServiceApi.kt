@@ -28,7 +28,7 @@ interface ServiceApi {
         private const val GETORDER = "/get/order"
         private const val ORDERSAVE = "/order/save"
         private const val ORDERLIST = "/get/orders"
-
+        private const val COMPANY = "order/company-save"
     }
 
     @GET(SEND_VERIFY_CODE)
@@ -74,5 +74,12 @@ interface ServiceApi {
 
     @GET(GETORDER)
     fun getOrderWithId(@Query("order_id")order_id: Int): Call<BaseResponse<Order>>
+
+    @POST(COMPANY)
+    fun companySave(@Query("company_name") company_name: String,
+                    @Query("user_name") user_name: String,
+                    @Query("user_telephone") user_telephone: String,
+                    @Query("user_note") user_note: String)
+            : Call<BaseResponse<String>>
 
 }

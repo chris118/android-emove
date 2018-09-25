@@ -29,6 +29,7 @@ class OrderListAdapter
 
     internal var kanjiaClickListener: (orderId: Int) -> Unit = {_ -> }
     internal var orderClickListener: (orderId: Int) -> Unit = {_ -> }
+    internal var itemClickListener: (orderId: Int) -> Unit = {_ -> }
 
 
     override fun getItemCount(): Int {
@@ -56,6 +57,10 @@ class OrderListAdapter
 
         holder.btnKanjia?.setOnClickListener {
             kanjiaClickListener(data[position].order_id)
+        }
+
+        holder.itemView.setOnClickListener {
+            itemClickListener(data[position].order_id)
         }
     }
 

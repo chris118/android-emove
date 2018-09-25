@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.boyu.emove.home.HomeFragment"
-        android:label="home_fragment"
-        tools:layout="@layout/fragment_home" ></fragment>
+        android:label="e搬家   "
+        tools:layout="@layout/fragment_home"></fragment>
 
 
 
@@ -44,14 +44,11 @@
     </fragment>
 
 
-
-
-
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.boyu.emove.info.ui.InfoFragment"
-        android:label="基本信息"
-        tools:layout="@layout/fragment_info" >
+        android:label="预约搬家"
+        tools:layout="@layout/fragment_info">
         <action
             android:id="@+id/action_infoFragment_to_goodsFragment"
             app:destination="@+id/goodsFragment"
@@ -93,7 +90,7 @@
     <fragment
         android:id="@+id/vehicleFragment"
         android:name="com.boyu.emove.vehicle.ui.VehicleFragment"
-        android:label="fragment_vehicle"
+        android:label="选择车队"
         tools:layout="@layout/fragment_vehicle" >
         <action
             android:id="@+id/action_vehicleFragment_to_orderFragment"
