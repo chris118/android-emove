@@ -537,8 +537,6 @@
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
-
-
     <RelativeLayout
         android:id="@+id/ll_tab3"
         android:layout_width="match_parent"
