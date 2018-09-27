@@ -32,20 +32,10 @@ class MainActivity : BaseActivity() {
         checkToken()
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-        this.bnv_bottom_navigation.selectedItemId = R.id.homeFragment
-
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
     }
     override fun onBackPressed() {
-//        bnv_bottom_navigation.visibility = View.VISIBLE
-
-
        val navi = Navigation.findNavController(this, R.id.nav_host_fragment)
         val destId = navi.currentDestination?.id ?: 0
         if (destId == R.id.homeFragment || destId == R.id.infoFragment || destId == R.id.orderListFragment){
@@ -87,11 +77,11 @@ class MainActivity : BaseActivity() {
         NavigationUI.setupWithNavController(bnv_bottom_navigation, navController)
 
 
-//        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
-//            NavigationUI.onNavDestinationSelected(item,
-//                    Navigation.findNavController(this, R.id.nav_host_fragment))
-//                    || super.onOptionsItemSelected(item)
-//
+        bnv_bottom_navigation.setOnNavigationItemSelectedListener {item ->
+            NavigationUI.onNavDestinationSelected(item,
+                    Navigation.findNavController(this, R.id.nav_host_fragment))
+                    || super.onOptionsItemSelected(item)
+
 //            when(item.itemId) {
 //                com.boyu.emove.R.id.homeFragment -> {
 //                    supportActionBar?.show()
@@ -106,7 +96,7 @@ class MainActivity : BaseActivity() {
 //                    supportActionBar?.show()
 //                }
 //            }
-//            return@setOnNavigationItemSelectedListener true
-//        }
+            return@setOnNavigationItemSelectedListener true
+        }
     }
 }

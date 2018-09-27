@@ -115,10 +115,6 @@ class OrderFragment : BaseNaviFragment() {
 
         initializeView()
         loadData()
-
-
-//        val appCompatActivity  = activity as? AppCompatActivity
-//        appCompatActivity?.supportActionBar?.show()
     }
 
     private fun initializeView() {
