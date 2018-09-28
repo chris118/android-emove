@@ -23,22 +23,22 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bnv_bottom_navigation"
-        android:layout_below="@+id/appbar"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
-    <!--<FrameLayout-->
-        <!--android:id="@+id/fl_container"-->
+    <!--<fragment-->
+        <!--android:id="@+id/nav_host_fragment"-->
+        <!--android:name="androidx.navigation.fragment.NavHostFragment"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:layout_above="@+id/bnv_bottom_navigation"-->
-        <!--android:background="@color/textColor">-->
-    <!--</FrameLayout>-->
+        <!--android:layout_below="@+id/appbar"-->
+        <!--app:defaultNavHost="true"-->
+        <!--app:navGraph="@navigation/nav_graph" />-->
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bnv_bottom_navigation"
+        android:layout_below="@id/appbar">
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_bottom_navigation"

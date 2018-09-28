@@ -1,7 +1,11 @@
 package com.boyu.emove.base.ui
 
+import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.boyu.emove.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,17 +16,17 @@ abstract class BaseNaviFragment : BaseFragment() {
 
     init {
         setHasOptionsMenu(true)
+
     }
+
+
+
 
     abstract fun onNext()
 
     internal fun goNext() {
-        val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+        val navigation =  Navigation.findNavController(activity!!, R.id.fl_container)
         navigation.navigate(getTargetLayoutId())
-
-//                NavigationUI.onNavDestinationSelected(item,
-//                        Navigation.findNavController(activity!!, R.id.nav_host_fragment))
-//                        || super.onOptionsItemSelected(item)
 
         activity?.bnv_bottom_navigation?.visibility = View.GONE
     }

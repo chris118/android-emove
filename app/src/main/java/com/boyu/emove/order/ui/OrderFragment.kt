@@ -131,7 +131,7 @@ class OrderFragment : BaseNaviFragment() {
         totalInfoRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
 
         btn_order_go_list.setOnClickListener {
-            (activity as? MainActivity)?.showActionBar()
+//            (activity as? MainActivity)?.showActionBar()
             activity?.let {
                 it.bnv_bottom_navigation.selectedItemId = R.id.orderListFragment
 

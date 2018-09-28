@@ -1,15 +1,16 @@
 package com.boyu.emove.orderlist.ui
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bigkoo.pickerview.OptionsPickerView
 import com.boyu.emove.R
@@ -18,22 +19,13 @@ import com.boyu.emove.base.ui.BaseNaviFragment
 import com.boyu.emove.base.ui.DividerItemDecoration
 import com.boyu.emove.extension.createViewModel
 import com.boyu.emove.extension.toast
-import com.boyu.emove.main.ui.MainActivity
 import com.boyu.emove.orderlist.ui.adapter.OrderListAdapter
 import com.boyu.emove.orderlist.viewmodel.OrderListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_order_list.*
-import org.jetbrains.anko.bundleOf
 import javax.inject.Inject
 
-class OrderListFragment : BaseNaviFragment() {
-    override fun onNext() {
-    }
-
-    override fun menuItem(): Int {
-        return R.menu.menu_item_null
-    }
-
+class OrderListFragment : BaseFragment() {
     override fun getTargetLayoutId(): Int {
         return R.id.action_orderListFragment2_to_orderFragment2
     }
@@ -79,13 +71,18 @@ class OrderListFragment : BaseNaviFragment() {
     }
 
     override fun onResume() {
-        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
-
         super.onResume()
+        activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
+        menu?.getItem(0)?.isVisible = false
     }
 
     private fun initializeView() {
+        activity?.invalidateOptionsMenu()
+
         orderlistRecycleView.layoutManager = LinearLayoutManager(activity!!)
         orderlistRecycleView.adapter = orderListAdapter
         orderlistRecycleView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
@@ -95,8 +92,8 @@ class OrderListFragment : BaseNaviFragment() {
 
             val action = OrderListFragmentDirections.ActionOrderListFragment2ToOrderFragment2()
             action.setOrderId(it)
-            val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-            navigation.navigate( action)
+            val navController =  Navigation.findNavController(activity!!, R.id.fl_container)
+            navController.navigate(action)
 
         }
 
@@ -105,8 +102,8 @@ class OrderListFragment : BaseNaviFragment() {
 
             val action = OrderListFragmentDirections.ActionOrderListFragment2ToOrderFragment2()
             action.setOrderId(it)
-            val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-            navigation.navigate( action)
+            val navController =  Navigation.findNavController(activity!!, R.id.fl_container)
+            navController.navigate(action)
         }
 
         orderListAdapter.kanjiaClickListener = {
@@ -115,8 +112,8 @@ class OrderListFragment : BaseNaviFragment() {
             val action = OrderListFragmentDirections.ActionOrderListFragmentToKanjiaFragment()
             action.setOrderId(it)
 
-            val navigation =  Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-            navigation.navigate(action)
+            val navController =  Navigation.findNavController(activity!!, R.id.fl_container)
+            navController.navigate(action)
         }
 
         tv_order_list.setOnClickListener {

@@ -94,7 +94,6 @@ class InfoFragment : BaseNaviFragment() {
     }
 
     override fun onResume() {
-        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
         super.onResume()
     }
@@ -124,7 +123,9 @@ class InfoFragment : BaseNaviFragment() {
     }
 
     private fun initializeView() {
-         pagerAdapter = object : FragmentPagerAdapter(this.childFragmentManager) {
+        activity?.invalidateOptionsMenu()
+
+        pagerAdapter = object : FragmentPagerAdapter(this.childFragmentManager) {
             override fun getItem(position: Int): Fragment? {
 
                 when(position){
