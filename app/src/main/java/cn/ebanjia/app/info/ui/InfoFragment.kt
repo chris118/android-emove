@@ -90,13 +90,13 @@ class InfoFragment : BaseNaviFragment() {
         banjia_type = "1"
 
         initializeView()
-        loadData()
     }
 
     override fun onResume() {
         (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
         super.onResume()
+        loadData()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {

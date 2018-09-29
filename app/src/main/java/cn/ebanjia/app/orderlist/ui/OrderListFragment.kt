@@ -85,7 +85,6 @@ class OrderListFragment : BaseNaviFragment() {
         super.onActivityCreated(savedInstanceState)
 
         initializeView()
-        loadData()
     }
 
     override fun onResume() {
@@ -93,6 +92,7 @@ class OrderListFragment : BaseNaviFragment() {
         activity!!.bnv_bottom_navigation.visibility = View.VISIBLE
 
         super.onResume()
+        loadData()
     }
 
     private fun initializeView() {
@@ -129,13 +129,9 @@ class OrderListFragment : BaseNaviFragment() {
 //            navigation.navigate(action)
 
 
-
-
 //            val mWXApi = WXAPIFactory.createWXAPI(context, "wx57d8abaf6729936a")
 //            mWXApi.registerApp("wx57d8abaf6729936a")
 //
-
-
 //            val webpage = WXWebpageObject()
 //            webpage.webpageUrl = "https://www.ebanjia.cn/cut/" + id.toString()
 //            val msg = WXMediaMessage(webpage)
