@@ -30,6 +30,7 @@ import android.widget.Toast
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.R.attr.description
+import cn.ebanjia.app.utils.Share
 import cn.sharesdk.onekeyshare.OnekeyShare
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject
@@ -122,6 +123,8 @@ class OrderListFragment : BaseNaviFragment() {
         orderListAdapter.kanjiaClickListener = {
             activity!!.bnv_bottom_navigation.visibility = View.GONE
 
+            Share().shareWeChat(activity!!, it)
+
 //            val action = OrderListFragmentDirections.ActionOrderListFragmentToKanjiaFragment()
 //            action.setOrderId(it)
 //
@@ -152,23 +155,6 @@ class OrderListFragment : BaseNaviFragment() {
 //            mWXApi.sendReq(req)
 
 
-            val oks = OnekeyShare()
-            //关闭sso授权
-            oks.disableSSOWhenAuthorize()
-
-            // title标题，微信、QQ和QQ空间等平台使用
-            oks.setTitle("砍价分享")
-            // text是分享文本，所有平台都需要这个字段
-            oks.setText("砍价分享砍价分享砍价分享砍价分享")
-
-            //网络图片的url：所有平台
-            oks.setImageUrl("http://www.ebanjia.cn/statics/front/images/article-thumbnail.png")
-
-            // url在微信、微博，Facebook等平台中使用
-            oks.setUrl("https://www.ebanjia.cn/cut/$it")
-
-            // 启动分享GUI
-            oks.show(activity!!)
         }
 
         tv_order_list.setOnClickListener {

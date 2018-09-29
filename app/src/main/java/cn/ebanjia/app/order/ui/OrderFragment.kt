@@ -22,6 +22,7 @@ import cn.ebanjia.app.order.ui.adapter.BaseInfoAdapter
 import cn.ebanjia.app.order.ui.adapter.GoodsInfoAdapter
 import cn.ebanjia.app.order.ui.adapter.TotalInfoAdapter
 import cn.ebanjia.app.order.viewmodel.OrderViewModel
+import cn.ebanjia.app.utils.Share
 import cn.ebanjia.app.vehicle.ui.VehicleFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_order.*
@@ -141,7 +142,7 @@ class OrderFragment : BaseNaviFragment() {
         }
 
         btn_order_kanjia.setOnClickListener{
-
+            Share().shareWeChat(activity!!, order_id)
         }
     }
 

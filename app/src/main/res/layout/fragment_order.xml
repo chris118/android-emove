@@ -455,7 +455,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/selector_orange_button"
-            android:text="进入砍价页面"
+            android:text="砍价"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
