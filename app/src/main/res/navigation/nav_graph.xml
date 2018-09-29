@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.boyu.emove.home.HomeFragment"
+        android:name="cn.ebanjia.app.home.HomeFragment"
         android:label="e搬家   "
         tools:layout="@layout/fragment_home"></fragment>
 
@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/orderListFragment"
-        android:name="com.boyu.emove.orderlist.ui.OrderListFragment"
+        android:name="cn.ebanjia.app.orderlist.ui.OrderListFragment"
         android:label="订单列表"
         tools:layout="@layout/fragment_order_list" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderFragment2"
-        android:name="com.boyu.emove.order.ui.OrderFragment"
+        android:name="cn.ebanjia.app.order.ui.OrderFragment"
         android:label="订单详情"
         tools:layout="@layout/fragment_order" >
         <argument
@@ -46,7 +46,7 @@
 
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.boyu.emove.info.ui.InfoFragment"
+        android:name="cn.ebanjia.app.info.ui.InfoFragment"
         android:label="预约搬家"
         tools:layout="@layout/fragment_info">
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/goodsFragment"
-        android:name="com.boyu.emove.goods.ui.GoodsFragment"
+        android:name="cn.ebanjia.app.goods.ui.GoodsFragment"
         android:label="选择物品"
         tools:layout="@layout/fragment_goods"
         app:enterAnim="@anim/slide_in_right"
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/infoExFragment"
-        android:name="com.boyu.emove.Infoex.ui.InfoExFragment"
+        android:name="cn.ebanjia.app.Infoex.ui.InfoExFragment"
         android:label="联系信息"
         tools:layout="@layout/fragment_info_ex" >
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/vehicleFragment"
-        android:name="com.boyu.emove.vehicle.ui.VehicleFragment"
+        android:name="cn.ebanjia.app.vehicle.ui.VehicleFragment"
         android:label="选择车队"
         tools:layout="@layout/fragment_vehicle" >
         <action
@@ -102,12 +102,12 @@
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.boyu.emove.order.ui.OrderFragment"
+        android:name="cn.ebanjia.app.order.ui.OrderFragment"
         android:label="订单"
         tools:layout="@layout/fragment_order" ></fragment>
     <fragment
         android:id="@+id/kanjiaFragment"
-        android:name="com.boyu.emove.kanjia.KanjiaFragment"
+        android:name="cn.ebanjia.app.kanjia.KanjiaFragment"
         android:label="砍价"
         tools:layout="@layout/fragment_kanjiaragment" >
         <argument

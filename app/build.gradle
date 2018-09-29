@@ -8,9 +8,17 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.mob.sdk'
+
 android {
     signingConfigs {
-        config {
+        debug {
+            keyAlias 'ebanjia'
+            keyPassword 'putao123'
+            storeFile file('/Users/admin/src/emove/android-emove/ebianjia-putao123')
+            storePassword 'putao123'
+        }
+        release {
             keyAlias 'ebanjia'
             keyPassword 'putao123'
             storeFile file('/Users/admin/src/emove/android-emove/ebianjia-putao123')
@@ -19,10 +27,10 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.boyu.ebanjia"
+        applicationId "cn.ebanjia.app"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
+        versionCode 5
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,11 +41,11 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             shrinkResources false
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -46,6 +54,28 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+}
+
+MobSDK {
+    appKey "28105cfcdf420"
+    appSecret "50c47dd3b61843e12f02d81d98fb7019"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            Wechat {
+                appId "wx57d8abaf6729936a"
+                appSecret "0b40c8e27c528fd8b66f0476bfa12bc4"
+                enable true
+            }
+            WechatMoments {
+                appId "wx57d8abaf6729936a"
+                appSecret "0b40c8e27c528fd8b66f0476bfa12bc4"
+                enable true
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -103,4 +133,7 @@ dependencies {
 
     //design
     implementation 'com.android.support:design:28.0.0-alpha1'
+
+    //weixin share
+    implementation  'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

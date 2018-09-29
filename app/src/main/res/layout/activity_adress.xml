@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.boyu.emove.info.ui.AddressActivity">
+    tools:context="cn.ebanjia.app.info.ui.AddressActivity">
 
     <EditText
         android:id="@+id/tv_keyword"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.boyu.emove">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.ebanjia.app">
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -14,14 +15,15 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".AndroidApplication"
+        android:name="cn.ebanjia.app.AndroidApplication"
+        tools:replace="android:name"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_2"
         android:roundIcon="@mipmap/ic_launcher_2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.ui.MainActivity"
+            android:name="cn.ebanjia.app.main.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -31,14 +33,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.ui.LoginActivity"
+            android:name="cn.ebanjia.app.login.ui.LoginActivity"
             android:launchMode="singleTask"></activity>
+
+        <!-- shareSDK -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="GYPKahfgo8IDbgmfoezKXI1Lj8WuRQGd" />
-
-        <activity android:name=".info.ui.AddressActivity">
+        <activity android:name="cn.ebanjia.app.info.ui.AddressActivity">
 
            </activity>
     </application>
